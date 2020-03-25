@@ -1,0 +1,58 @@
+.jumbotron {
+    background-color: 
+}
+
+.slider-wrap {
+    
+  width: 300px;
+  height: 450px;
+  margin: 20px auto;
+}
+
+.slider {
+    
+    font-family: 'Teko', sans-serif;
+    overflow-x: scroll;
+}
+
+.holder {
+  width: 500%;
+}
+
+.slide {
+  float: left;
+  width: 300px;
+  height: 450px;
+  position: relative;
+  background-position: -100px 0;
+}
+.mood {
+  position: absolute;
+  color: white;
+  font-size: 60px;
+  bottom: 15px;
+  left: 15px;
+  font-weight: 100;
+}
+
+#slide-0 {
+    background-image: url(https://media-cdn.tripadvisor.com/media/photo-s/04/b9/c5/e8/after-work.jpg);
+}
+#slide-1 {
+    background-image: url(https://i.ytimg.com/vi/x9mGRTaD_00/maxresdefault.jpg);
+}
+#slide-2 {
+    background-image: url(https://static.abplive.com/wp-content/uploads/sites/5/2019/12/30152440/booze-party.jpg);
+}
+#slide-3 {
+    background-image: url(https://hotelmimpark.com/wp-content/uploads/2017/09/Top-10-best-Simple-Awesome-Background-Images-for-Your-Website-or-Blog2.jpg);
+}
+
+#slide-4 {
+    background-image: url(https://www.incimages.com/uploaded_files/image/970x450/getty_1063202836_412690.jpg);
+}
+
+.slider-nav {
+  text-align: center;
+  margin: 10px 0 0 0;
+}
