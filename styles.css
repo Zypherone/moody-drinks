@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+.wrapper {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  background: blue;
+  height: 100px;
+  width: 100%;
+}
+
+#landing {
+  flex-grow: 1;
+  padding: 1em;
+}
+
+footer {
+  background: pink;
+  height: 100px;
+  width: 100%
+}
+
+#mood-range {
+  background: blue;
+  height: 250px;
+}
+
+#mood-range input {
+  transform: rotate(90deg);
+  transform-origin: 0 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 30px;
+  width: 250px;
+}
