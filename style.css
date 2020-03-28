@@ -1,13 +1,15 @@
 body {
   background-image: url(https://image.freepik.com/free-vector/seamless-repeating-pattern-with-silhouettes-palm-tree-leaves-background_10083-29.jpg);
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'News Cycle', sans-serif;
+  color: white;
+  overflow: hidden;
+    height: 100%;
+    width: 100%;
 }
 
 header {
   font-size: 30px;
-  color:white;
   text-align: center;
-  padding: 10px;
   font-family: 'Lobster', cursive;
 }
 
@@ -15,15 +17,14 @@ header {
   margin: 0 20px;
   padding: 15px;
   background-color: rgb(3, 59, 3);
-  color: white;
 }
-
 
 .mood-slider,
 .cocktail-slider {
   width: 100%;
   height: 450px;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 .slider {
@@ -35,19 +36,24 @@ header {
 }
 
 .slide {
+  background-repeat: no-repeat;
   float: left;
-  width: 15%;
+  width: 19%;
   height: 450px;
   position: relative;
   background-position: -100px 0;
 }
 
-.slide:hover { width: 25%; height: 500px; }
+.slide:hover {
+  width: 23%;
+  height: 500px;
+  transform: scaleY(1.2); 
+  transform-origin: 100% 100%;
+}
 
 .mood,
 .cocktail {
   position: absolute;
-  color: white;
   font-size: 60px;
   bottom: 15px;
   left: 15px;
@@ -55,7 +61,7 @@ header {
 }
 
 #slide-0 {
-    background-image: url(https://media-cdn.tripadvisor.com/media/photo-s/04/b9/c5/e8/after-work.jpg);
+    background-image: url(https://www.creads.fr/app/uploads/sites/1/2017/06/julie-richard-tignol.jpg);
 }
 
 #slide-1 {
@@ -67,7 +73,7 @@ header {
 }
 
 #slide-3 {
-    background-image: url(https://hotelmimpark.com/wp-content/uploads/2017/09/Top-10-best-Simple-Awesome-Background-Images-for-Your-Website-or-Blog2.jpg);
+    background-image: url(https://im.rediff.com/getahead/2015/nov/25smile.jpg);
 }
 
 #slide-4 {
@@ -79,14 +85,21 @@ header {
   margin: 10px 0 0 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 400px) {
+
   .holder {
+    width: 300px;
     width: 500%;
   }
 
   .mood-slider,
   .cocktail-slider {
-  width: 300px;
+    width: 300px;
+    width: 100%;
+  }
+
+  .slider {
+    width: 300px;
   }
 
   .slide {
