@@ -1,11 +1,11 @@
 body {
   background-image: url(https://image.freepik.com/free-vector/seamless-repeating-pattern-with-silhouettes-palm-tree-leaves-background_10083-29.jpg);
   font-family: 'News Cycle', sans-serif;
+  color: white;
 }
 
 header {
   font-size: 30px;
-  color:white;
   text-align: center;
   font-family: 'Lobster', cursive;
 }
@@ -14,9 +14,7 @@ header {
   margin: 0 20px;
   padding: 15px;
   background-color: rgb(3, 59, 3);
-  color: white;
 }
-
 
 .mood-slider,
 .cocktail-slider {
@@ -53,7 +51,6 @@ header {
 .mood,
 .cocktail {
   position: absolute;
-  color: white;
   font-size: 60px;
   bottom: 15px;
   left: 15px;
@@ -96,6 +93,10 @@ header {
   .cocktail-slider {
     width: 300px;
     width: 100%;
+  }
+
+  .slider {
+    width: 300px;
   }
 
   .slide {

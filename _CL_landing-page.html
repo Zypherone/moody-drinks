@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Moody Drinks</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Lobster|Montserrat+Alternates&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="_CL_style.css" />
+    </head>
+    <body>
+      <header>Moody Drinks</header>
+      <div class="welcome">
+        <h1>Welcome back Janice!</h1>
+        <hr>
+        <p>How do you feel today? Ready to get a Moody Drink?</p>
+      </div>
+      <div class="mood-slider">
+        <div class="slider" id="slider">
+          <div class="holder">
+            <div class="slide" id="slide-0" data-type="orange"><span class="mood">After Work~</span></div>
+            <div class="slide" id="slide-1" data-type="darkblue"><span class="mood">Kinda Blue..</span></div>
+            <div class="slide" id="slide-2" data-type="pink"><span class="mood">Party Time!!!</span></div>
+            <div class="slide" id="slide-3" data-type="lightgreen"><span class="mood">Feeling safe.</span></div>
+            <div class="slide" id="slide-4" data-type="red"><span class="mood">Tell Me How I Am Feeling Now..</span></div>
+          </div>
+        </div>
+        <nav class="slider-nav">
+          <a href="#slide-0">😀</a>
+          <a href="#slide-1">😔</a> 
+          <a href="#slide-2">😆</a> 
+          <a href="#slide-3">🙂</a> 
+          <a href="#slide-4">❤</a>
+        </nav>
+      </div>
+      <footer></footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(".slide").on('hover',function(){
+      var color = $(this).attr("data-type");
+      $(".welcome").attr("style", "'background-color: " + color + "'");
+    })
+
+    </script>
+    
+    </body>
+</html>
