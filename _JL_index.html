@@ -3,141 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
     <title>Moody Drinks</title>
 </head>
 <body>
-    <button data-drink ="vodka">vodka</button>
-    <button data-drink ="gin">gin</button>
-    <button data-drink ="tequila">tequila</button>
-    <button data-drink ="rum">rum</button>
-    <button data-random ="random">random</button>
-    <button data-mocktails = "Non_Alcoholic">mocktails</button>
+    <button data-type ="drink" data-drink ="vodka">vodka</button>
+    <button data-type ="drink" data-drink ="gin">gin</button>
+    <button data-type ="drink" data-drink ="tequila">tequila</button>
+    <button data-type ="drink" data-drink ="rum">rum</button>
+    <button data-type ="random" data-random ="random">random</button>
+    <button data-type ="mocktails" data-mocktails = "Non_Alcoholic">mocktails</button>
     
     <div id="information-appear-here">
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      span { display: block }
+    </style>
+</body>   
+      
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
     $("button").on("click", function() {
+      var drinkType = $(this).attr("data-type");
       var drink = $(this).attr("data-drink");
       var mocktails = $(this).attr("data-mocktails");
       var random = $(this).attr("data-random");
       var queryURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink + "&api_key=1";
       var queryURLtwo = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + mocktails + "&api_key=1";
-      var queryURLthree = "https://www.thecocktaildb.com/api/json/v1/1/" + random + ".php";
-
-          console.log(random)
+      var queryURLthree = "https://www.thecocktaildb.com/api/json/v1/1/" + random + ".php"; // do not need API Key 
+      
       //console.log(mocktails)
 
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function(response) {
-        console.log(response);
-
-        var results = response.drinks;
-
-        for (var i = 0; i < 2; i++) {
-
-        var drinkDiv = $("<div>");
-
-        var p = $("<p>").text("Drink recommendation: " + results[i].strDrink);
-
-        console.log(results[0].strDrink);
-
-        var drinkImage = $("<img>");
-
-        drinkImage.attr("src", results[i].strDrinkThumb);
-  
-        $(drinkDiv).append(p);
-  
-        $(drinkDiv).append(drinkImage)
-        
-        $("#information-appear-here").prepend(drinkDiv);
-        }
-      });
-
-      $.ajax({
-        url: queryURLtwo,
-        method: "GET"
-      }).then(function(response) {
-
-        console.log(response);
-
-        var results = response.drinks;
-
-        for (var i = 0; i < 2; i++) {
-
-        var drinkDiv = $("<div>");
-
-        var p = $("<p>").text("Drink recommendation: " + results[i].strDrink);
-
-        console.log(results[0].strDrink);
-
-        var drinkImage = $("<img>");
-
-        drinkImage.attr("src", results[i].strDrinkThumb);
-  
-        $(drinkDiv).append(p);
-  
-        $(drinkDiv).append(drinkImage)
-        
-        $("#information-appear-here").prepend(drinkDiv);
     
-        }
-
-      });
-
-      $.ajax({
-        url: queryURLthree,
-        method: "GET"
-      }).then(function(response) {
-
-        console.log(response);
-
-        var results = response.drinks;
-
-        var drinkDiv = $("<div>");
-
-        var p = $("<p>").text("Drink recommendation: " + results[0].strDrink);
-
-        console.log(results[0].strIngredient1);
-
-        var drinkImage = $("<img>");
-
-        drinkImage.attr("src", results[0].strDrinkThumb);
-
-        var drinkInfo = $("<p>").text("Instructions: " + results[0].strInstructions);
+      if ( drinkType === "drink") {
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
         
-        var drinkIngredient = "";
-        
-        for (var i = 1; i < 15 ; i++) {
-            if (results[0]['strIngredient' + i] != null) {
-         drinkIngredient += results[0]['strIngredient'+i]+"<br/>";
-        }
-        } ; 
-        
-        $("<p>").text(drinkIngredient);
+          console.log(response);
 
-        console.log(drinkIngredient);
+          var results = response.drinks;
 
-        $(drinkDiv).append(p);
-            
-        $(drinkDiv).append(drinkImage);
 
-        $(drinkDiv).append(drinkInfo);
+          console.log(results[0].strDrink);
+      
 
-        $(drinkDiv).append(drinkIngredient);
-        
-        $("#information-appear-here").prepend(drinkDiv);
+          var drinkDiv = $("<div>");
+          var p = $("<p>").text("Drink recommendation: " + results[0].strDrink);
+          var drinkImage = $("<img>");
 
-      });
+          drinkImage.attr("src", results[0].strDrinkThumb);
+          $(drinkDiv).append(p);
+          $(drinkDiv).append(drinkImage);
+          $("#information-appear-here").prepend(drinkDiv);
 
+          });
+      }    
+
+      if ( drinkType === "mocktails") {
+        $.ajax({
+          url: queryURLtwo,
+          method: "GET"
+        }).then(function(response) {
+
+          console.log(response);
+
+          var results = response.drinks;
+
+          number = results[0].idDrink;
+          
+          var drinkDiv = $("<div>");
+
+          var p = $("<p>").text("Drink recommendation: " + results[0].strDrink);
+
+          console.log(results[0].strDrink);
+
+          var drinkImage = $("<img>");
+
+          drinkImage.attr("src", results[0].strDrinkThumb);
+
+          $(drinkDiv).append(p);
+    
+          $(drinkDiv).append(drinkImage);
+          
+          $("#information-appear-here").prepend(drinkDiv);
+        });
+      }
+
+      if ( drinkType === "random") {
+        $.ajax({
+          url: queryURLthree,
+          method: "GET"
+        }).then(function(response) {
+
+          console.log(response);
+
+          var results = response.drinks;
+
+          console.log(results);
+
+          var drinkDiv = $("<div>");
+
+          var p = $("<p>").text("Drink recommendation: " + results[0].strDrink);
+
+          console.log(results[0].strIngredient1);
+
+          var drinkImage = $("<img>");
+
+          drinkImage.attr("src", results[0].strDrinkThumb);
+
+          var drinkInfo = $("<p>").text("Instructions: " + results[0].strInstructions);
+          
+          var drinkIngredient = "";
+          var drinkMesurement = "";
+          var ingredients = "";
+          for (var i = 1; i < 15 ; i++) {
+              if (results[0]['strIngredient' + i] != null) {
+                var drinkIngredient = results[0]['strIngredient'+i];
+              } else {var drinkIngredient = "";}
+
+              if (results[0]['strMeasure' + i] != null) {
+                var drinkMesurement = results[0]['strMeasure'+i];
+              } else {var drinkMesurement = "";}
+
+              if (drinkIngredient != "" || drinkMesurement != "") {
+              ingredients += "<span>" + drinkMesurement + " " +  drinkIngredient + "</span>";
+              }  
+          }; 
+    
+          $("<p>").html(ingredients);
+          
+          console.log(drinkIngredient);
+
+          $(drinkDiv).append(p);
+              
+          $(drinkDiv).append(drinkImage);
+
+          $(drinkDiv).append(drinkInfo);
+
+          $(drinkDiv).append(ingredients);
+          
+          $("#information-appear-here").prepend(drinkDiv);
+        });
+      }
+
+      clear();
     });
+
+    function clear() {
+      $("#information-appear-here").empty();
+    };
+
 </script>
-</body>
+
 
 </html>
