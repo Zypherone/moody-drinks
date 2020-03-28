@@ -2,7 +2,7 @@ body {
   background-image: url(https://image.freepik.com/free-vector/seamless-repeating-pattern-with-silhouettes-palm-tree-leaves-background_10083-29.jpg);
   font-family: 'News Cycle', sans-serif;
   color: white;
-  overflow: hidden;
+  overflow-x: hidden;
     height: 100%;
     width: 100%;
 }
