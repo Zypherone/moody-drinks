@@ -30,33 +30,42 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
-        $("#search-btn").on("click", function() {
-            
+        $("#search-btn").on("click", function(e) {
+            e.preventDefault();
 
             let name = $("#name").val();
             let ingredeint = $("#ingredient").val();
             let category = $("#category").val();
-            console.log(name);
+            
+            
             let nameURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + name;
 
             $.ajax({
                 url: nameURL,
                 method: "GET"
             }).then(function(response) {
-                
-                let results = response.drinks;
-                
-                for (i = 0; i < results.length; i++) {
-                    let drinkNameS = $("<p>").text(results[i].strDrink);
-                    let drinkImageS = $("<img>").attr("src", results[i].strDrinkThumb);
-                    let drinkInstrS = $("<p>").text(results[i].strInstructions);
-                    let drinkDivS = $("<div>");
-                    $("drinkDivS").append(drinkNameS, drinkImageS, drinkInstrS);
-                    $(".results").append(drinkDivS);
+                               
+                    let results = response.drinks;
+
+                    if (results != null) {
+
+                    
+                    
+                    for (i = 0; i < results.length; i++) {
+                        let drinkNameS = $("<p>").text(results[i].strDrink);
+                        let drinkImageS = $("<img>").attr("src", results[i].strDrinkThumb);
+                        let drinkInstrS = $("<p>").text(results[i].strInstructions);
+                        let drinkDivS = $("<div>");
+                            drinkDivS.append(drinkNameS, drinkImageS, drinkInstrS);
+                        $(".results").append(drinkDivS);
+                    }
+                    
+                } else {
+                    $(".results").html('No drinks returned!');
                 }
+            });
             
-            })
-        })
+        });
         </script>
     </body>
 </html>

@@ -22,16 +22,59 @@ html,
 }
 
 #inner-container {
+  background: whitesmoke;
   display: flex;
   flex-flow: column;
 }
 
 header {
+  background: whitesmoke;
+  box-shadow: 0 0 5px #333;
   height: 100px;
+  box-sizing: border-box;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+h1 {
+  font-size: 1.3em;
+  padding-left: 79px;
+}
+
+h1:before {
+  content: "\1F379";
+    position: absolute;
+    border: 5px solid #c6c5c5;
+    padding: 1em;
+    position: absolute;
+    left: 0.5em;
+    border-radius: 100%;
+    background: white;
+    top: 8px;
+}
+
+header p {
+  font-style: oblique;
+  font-size: .8em;
+  border-top: 1px solid #b7b7b7;
+  padding-top: .5em;
+  padding-left: 77px;
+}
+
+nav {
+  display: none;
 }
 
 section {
   flex-grow: 2;
+  background: white;
+  border-radius: 1em;
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #eee;
 }
 footer {
   background: whitesmoke;
@@ -55,7 +98,7 @@ footer li {
 
 footer a,
 footer a:hover {
-  color: rgb(139, 139, 139);
+  color: rgb(216, 123, 123);
   text-decoration: none;
   display: flex;
   display: flex;
