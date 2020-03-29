@@ -1,5 +1,6 @@
 body {
-  background-image: url(https://image.freepik.com/free-vector/seamless-repeating-pattern-with-silhouettes-palm-tree-leaves-background_10083-29.jpg);
+  /*background-image: url(https://image.freepik.com/free-vector/seamless-repeating-pattern-with-silhouettes-palm-tree-leaves-background_10083-29.jpg);*/
+  background: #ffffff;
   font-family: 'News Cycle', sans-serif;
   color: white;
   overflow-x: hidden;
@@ -21,7 +22,7 @@ header {
 
 .mood-slider,
 .cocktail-slider {
-  width: 100%;
+  
   height: 450px;
   padding-left: 20px;
   padding-right: 20px;
@@ -29,57 +30,77 @@ header {
 
 .slider {
   overflow-x: scroll;
+  width: 100%;  
 }
 
 .holder {
   width: 100%;
+  display: flex;
 }
 
 .slide {
   background-repeat: no-repeat;
-  float: left;
-  width: 19%;
+  /*
+  float: left;*/
   height: 450px;
   position: relative;
   background-position: -100px 0;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
-.slide:hover {
+.slide span {
+  display: block;
+  z-index: 0;
+}
+
+.slide span:hover {
+  transform: scaleY(1.2); 
+  transform-origin: 100% 100%;
+  z-index: 2;
+}
+
+/*
+.slide span:hover {
   width: 23%;
   height: 500px;
   transform: scaleY(1.2); 
   transform-origin: 100% 100%;
 }
-
+*/
 .mood,
 .cocktail {
-  position: absolute;
+  /*position: absolute;
   font-size: 60px;
   bottom: 15px;
-  left: 15px;
+  left: 15px;*/
+  height: 100%;
   font-weight: 100;
 }
 
-#slide-0 {
+#slide-0 span {
     background-image: url(https://www.creads.fr/app/uploads/sites/1/2017/06/julie-richard-tignol.jpg);
 }
 
-#slide-1 {
+#slide-1 span {
     background-image: url(https://i.ytimg.com/vi/x9mGRTaD_00/maxresdefault.jpg);
 }
 
-#slide-2 {
+#slide-2 span {
     background-image: url(https://static.abplive.com/wp-content/uploads/sites/5/2019/12/30152440/booze-party.jpg);
 }
 
-#slide-3 {
+#slide-3 span {
     background-image: url(https://im.rediff.com/getahead/2015/nov/25smile.jpg);
 }
 
-#slide-4 {
+#slide-4 span {
     background-image: url(https://www.incimages.com/uploaded_files/image/970x450/getty_1063202836_412690.jpg);
 }
 
+#slide-5 span {
+  background-color: #000000;
+}
 .slider-nav {
   text-align: center;
   margin: 10px 0 0 0;
