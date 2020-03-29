@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Moody Drinks</title>
+    </head>
+    <body>
+        <form>
+            <h2>Search Parameters</h2>
+            <div class="name">
+                <label>Cocktail Name</label>
+                <input id="name" placeholder="Zipperhead">
+            </div>
+            <div class="ingredient">
+                <label>Ingredients in Cocktail</label>
+                <input id="ingredient" placeholder="Vodka">
+            </div>
+            <div class="category">
+                <label>Drink Category</label>
+                <input id="category" placeholder="Ordinary_Drink">
+            </div>
+            <div class="button-container">
+                <button id="search-btn">Search</button>
+                <button>Clear</button>
+            </div>
+        </form>
+        <div class="results"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+        $("#search-btn").on("click", function() {
+            
+
+            let name = $("#name").val();
+            let ingredeint = $("#ingredient").val();
+            let category = $("#category").val();
+            console.log(name);
+            let nameURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + name;
+
+            $.ajax({
+                url: nameURL,
+                method: "GET"
+            }).then(function(response) {
+                
+                let results = response.drinks;
+                
+                for (i = 0; i < results.length; i++) {
+                    let drinkNameS = $("<p>").text(results[i].strDrink);
+                    let drinkImageS = $("<img>").attr("src", results[i].strDrinkThumb);
+                    let drinkInstrS = $("<p>").text(results[i].strInstructions);
+                    let drinkDivS = $("<div>");
+                    $("drinkDivS").append(drinkNameS, drinkImageS, drinkInstrS);
+                    $(".results").append(drinkDivS);
+                }
+            
+            })
+        })
+        </script>
+    </body>
+</html>
