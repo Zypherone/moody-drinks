@@ -3,10 +3,27 @@ body {
   background-color: white;
 }
 
+header {
+  background: whitesmoke;
+  /* box-shadow: 0 0 5px #333; */
+  height: 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1em;
+  display: none;
+}
+
+section {
+  flex-grow: 2;
+  background: white;
+  padding: 0em;
+  margin: 0;
+}
+
 .image {
-  border-bottom-left-radius: 25px;
-  border-top-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
   background-image: url("kugu2m1504735473.jpg");
   background-position: left top;
   width: 350px;
@@ -57,9 +74,7 @@ body {
 }
 
 .imageResults {
-  border-bottom-left-radius: 25px;
-  border-top-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
   background-image: url("kugu2m1504735473.jpg");
   background-position: left top;
   width: 350px;
@@ -74,8 +89,8 @@ h2 {
   color : white;
   padding: 30px;
   position: relative;
-    right: -2px;
-    top: 18px;
+    right: -4px;
+    top: 4px;
 }
 
 .favourite {
@@ -96,11 +111,11 @@ h5 {
   border-radius: 25px;
   background: whitesmoke;
   padding: 20px;
-  width: 320px;
-  height: 350px;
+  width: 280px;
+  height: 358px;
   position: absolute;
-  left: 16px;
-  bottom: -300px;
+    left: 16px;
+    bottom: -322px;
 }
 
 #button1 {
@@ -116,7 +131,7 @@ h5 {
   margin: 4px 2px;
   position: relative;
     left: -2px;
-    top: 161px;
+    top: 276px;
 }
 
 #button2 {
@@ -132,6 +147,6 @@ h5 {
   margin: 4px 2px;
   position: relative;
   left: 9px;
-  top: 161px;
+  top: 276px;
 }
 
