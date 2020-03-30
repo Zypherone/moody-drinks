@@ -231,6 +231,9 @@ footer li:hover a {
 
 @media only screen and (max-width: 500px) {
 
+  section {
+    position: relative;
+  }
   .holder {
 
     height: 100%;
@@ -247,6 +250,7 @@ footer li:hover a {
   .slider {
     height: 100%;
     width: 100%;
+    border-radius: 1em;
     overflow: hidden;
     /*overflow-y: scroll;*/
   }
@@ -261,4 +265,24 @@ footer li:hover a {
     min-width: 100%;
     scroll-snap-align: start;
   }
-}
+
+  .slider-nav {
+    background: rgba(255,255,255,.5);
+    display: block !important;
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    right: 1em;
+    z-index: 5;
+  }
+
+  .slider-nav a,
+  .slider-nav a:hover {
+    color: #333;
+    font-family: "Times", "Times New Roman", "serif", "sans-serif", "EmojiSymbols";
+    padding: 0.5em;
+    font-size: 1.3em;
+    display: inline-block;
+    text-decoration: none;
+  }
+} 
