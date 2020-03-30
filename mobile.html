@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Moody Drinks</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="handlebars.min-v4.7.3.js"></script>
+    <link rel="stylesheet" href="css-reset.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="mobile.css" />
   </head>
@@ -28,7 +30,7 @@
 
       </header>
       <section>
-        BODY CONTENT
+        {{BODY_CONTENT}}
       </section>
       <footer>
         <ul>
@@ -38,6 +40,7 @@
           <li><a href="#page-history"><span class="nav-icon">&#128220;</span><span class="nav-text">History</span></a></li>
         </ul>
       </footer>
-    </div>  
+    </div>
+    <script src="mobile.js"></script>
   </body>
 </html>
