@@ -3,6 +3,10 @@ body {
   background-color: white;
 }
 
+#favTemplate {
+  background-image: url(kugu2m1504735473.jpg);
+}
+
 header {
   background: whitesmoke;
   /* box-shadow: 0 0 5px #333; */
@@ -50,7 +54,7 @@ h2 {
     top: -10px;
 }
 
-h5 {
+h3 {
   position: relative;
     left: 29px;
     top: 0px;
@@ -149,4 +153,5 @@ h5 {
   left: 9px;
   top: 276px;
 }
+
 
