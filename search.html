@@ -34,8 +34,26 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+            return array;
+        }
+
         $("#name-search-btn").on("click", function(e) {
             e.preventDefault();
+
+            $(".results").empty();
 
             let name = $("#name").val();
             
@@ -98,6 +116,8 @@
         $("#ingredient-search-btn").on("click", function(e) {
             e.preventDefault();
 
+            $(".results").empty();
+
             
 
             let listURL = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list";
@@ -148,53 +168,68 @@
                         console.log(response);
 
                         let results4 = response.drinks;
-                        let index=[];
+
+                        function shuffle(array) {
+                        var currentIndex = array.length, temporaryValue, randomIndex;
+                        // While there remain elements to shuffle...
+                        while (0 !== currentIndex) {
+                            // Pick a remaining element...
+                            randomIndex = Math.floor(Math.random() * currentIndex);
+                            currentIndex -= 1;
+                            // And swap it with the current element.
+                            temporaryValue = array[currentIndex];
+                            array[currentIndex] = array[randomIndex];
+                            array[randomIndex] = temporaryValue;
+                        }
+                        return array;
+                        }
+
+                        let results4New = shuffle(results4);
+
+                        
                     
 
-                        if (results4.length < 10) {
-                            random = Math.floor(Math.random() * results4.length);
-                            let drinkNameS = $("<p>").text(results4[random].strDrink);
-                            let drinkImageS = $("<img>").attr("src", results4[random].strDrinkThumb);
-                            let id = results4[random].idDrink;
+                        if (results4.length < 5) {
+                            
+                            let drinkNameS = $("<p>").text(results4New[0].strDrink);
+                            let drinkImageS = $("<img>").attr("src", results4New[0].strDrinkThumb);
+                            let id = results4[0].idDrink;
                             let drinkInstrS = $("<p>");
 
-                            let idURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
+                            // let idURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
 
-                            $.ajax({
-                                url: idURL,
-                                method: "GET"
-                            }).then(function(response) {
-                                console.log(response);
+                            // $.ajax({
+                            //     url: idURL,
+                            //     method: "GET"
+                            // }).then(function(response) {
+                            //     console.log(response);
 
-                                drinkInstrS.text(response.drinks.strInstructions);
-                            })
+                            //     drinkInstrS.text(response.drinks.strInstructions);
+                            // })
 
                             let drinkDivS = $("<div>");
 
-                            drinkDivS.append(drinkNameS, drinkImageS, drinkInstrS);
+                            // drinkDivS.append(drinkNameS, drinkImageS, drinkInstrS);
+                            drinkDivS.append(drinkNameS, drinkImageS);
                             yourChoice.append(drinkDivS);
                         }
 
                         else {
-                            
-
                             for (i = 0; i < 5; i++) {
-                                index[i] = Math.floor(Math.random() * results4.length);
-                                let drinkNameS = $("<p>").text(results4[index[i]].strDrink);
-                                let drinkImageS = $("<img>").attr("src", results4[index[i]].strDrinkThumb);
-                                let drinkDivS = $("<div>");
+                            let drinkNameS = $("<p>").text(results4[i].strDrink);
+                            let drinkImageS = $("<img>").attr("src", results4[i].strDrinkThumb);
+                            let drinkDivS = $("<div>");
 
-                                drinkDivS.append(drinkNameS, drinkImageS);
-                                yourChoice.append(drinkDivS);
+                            drinkDivS.append(drinkNameS, drinkImageS);
+                            yourChoice.append(drinkDivS);
                             }
-
                         }
 
                         
                         choiceDisplay.html(yourChoice);
                         
 
-                        console.log(index);
+                        
                     })
                 })
             })
@@ -208,6 +243,8 @@
         $("#category-search-btn").on("click", function(e) {
             e.preventDefault();
 
+            $(".results").empty();
+
             
 
             let categoryURL = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
@@ -219,6 +256,8 @@
                 console.log(response);
 
                 let results3 = response.drinks;
+
+                
 
                 let category = $("<ul>");
                 let categoryEl = "";
@@ -259,13 +298,16 @@
                         console.log(response);
 
                         let results5 = response.drinks;
-                        let index=[];
+
+                        var results5New = shuffle(results5);
+                        
+                        
                     
 
-                        if (results5.length < 10) {
-                            random = Math.floor(Math.random() * results5.length);
-                            let drinkNameS = $("<p>").text(results5[random].strDrink);
-                            let drinkImageS = $("<img>").attr("src", results5[random].strDrinkThumb);
+                        if (results5.length < 5) {
+                            
+                            let drinkNameS = $("<p>").text(results5[0].strDrink);
+                            let drinkImageS = $("<img>").attr("src", results5[0].strDrinkThumb);
                             let drinkDivS = $("<div>");
 
                             drinkDivS.append(drinkNameS, drinkImageS);
@@ -276,14 +318,19 @@
                             
 
                             for (i = 0; i < 5; i++) {
-                                index[i] = Math.floor(Math.random() * results5.length);
-                                let drinkNameS = $("<p>").text(results5[index[i]].strDrink);
-                                let drinkImageS = $("<img>").attr("src", results5[index[i]].strDrinkThumb);
+                                let drinkNameS = $("<p>").text(results5[i].strDrink);
+                                let drinkImageS = $("<img>").attr("src", results5[i].strDrinkThumb);
                                 let drinkDivS = $("<div>");
 
                                 drinkDivS.append(drinkNameS, drinkImageS);
                                 yourChoice.append(drinkDivS);
                             }
+
+                            
+
+                            
+
+                            
 
                         }
 
@@ -291,7 +338,7 @@
                         choiceDisplay.html(yourChoice);
                         
 
-                        console.log(index);
+                    
                     })
 
 
