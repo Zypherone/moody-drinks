@@ -18,6 +18,8 @@ header {
   margin: 0 20px;
   padding: 15px;
   background-color: rgb(3, 59, 3);
+  position: relative;
+  z-index: 1;
 }
 
 .mood-slider,
@@ -26,10 +28,11 @@ header {
   height: 450px;
   padding-left: 20px;
   padding-right: 20px;
+  position: relative;
+  z-index: 3;
 }
 
 .slider {
-  overflow-x: scroll;
   width: 100%;  
 }
 
@@ -43,7 +46,6 @@ header {
   /*
   float: left;*/
   height: 450px;
-  position: relative;
   background-position: -100px 0;
   flex-grow: 1;
   flex-shrink: 1;
@@ -51,13 +53,19 @@ header {
 
 .slide span {
   display: block;
+  cursor: pointer;
   z-index: 0;
+  transition: transform .4s;
+  position: relative;
+  z-index: 2;
 }
 
-.slide span:hover {
-  transform: scaleY(1.2); 
-  transform-origin: 100% 100%;
-  z-index: 2;
+.slide:hover span {
+  box-shadow: 0 0 10px #000;
+  transform: scale(1.1); 
+  transform-origin: 50%;
+  z-index: 5;
+  position: relative;
 }
 
 /*
