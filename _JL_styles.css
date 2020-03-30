@@ -1,0 +1,58 @@
+body {
+  background-color: white;
+}
+
+.image {
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-image: url("kugu2m1504735473.jpg");
+  background-position: left top;
+  width: 350px;
+  height: 550px;
+  margin: 30px;
+  position: relative;
+    top: -33px;
+    right: -14px;
+}
+
+h2 {
+  color : white;
+  padding: 30px;
+  position: relative;
+    right: -2px;
+    top: 18px;
+}
+
+.favourite {
+  width: 20px;
+  height: 20px;
+  position: relative;
+    left: -5px;
+    top: -10px;
+}
+
+h5 {
+  position: relative;
+    left: 29px;
+    top: 0px;
+}
+
+.card-body {
+  border-radius: 25px;
+  background:whitesmoke;
+  padding: 20px;
+  width: 250px;
+  height: 100px;
+  position: absolute;
+    bottom: -37px;
+    left: -38px;
+
+}
+
+/*@media (max-width: 480px) {
+  .image {
+    background-image: url(mobile.png);
+    background-repeat: no-repeat;
+    background-size: contain ;
+  }*/
