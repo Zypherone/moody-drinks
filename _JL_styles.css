@@ -1,3 +1,4 @@
+/*styles for Favourites page*/
 body {
   background-color: white;
 }
@@ -50,9 +51,87 @@ h5 {
 
 }
 
-/*@media (max-width: 480px) {
-  .image {
-    background-image: url(mobile.png);
-    background-repeat: no-repeat;
-    background-size: contain ;
-  }*/
+/*styles for Results page*/
+body {
+  background-color: white;
+}
+
+.imageResults {
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-image: url("kugu2m1504735473.jpg");
+  background-position: left top;
+  width: 350px;
+  height: 300px;
+  margin: 30px;
+  position: relative;
+    top: -31px;
+    right: -3px;
+}
+
+h2 {
+  color : white;
+  padding: 30px;
+  position: relative;
+    right: -2px;
+    top: 18px;
+}
+
+.favourite {
+  width: 20px;
+  height: 20px;
+  position: relative;
+    left: -5px;
+    top: -10px;
+}
+
+h5 {
+  position: relative;
+    left: 29px;
+    top: 0px;
+}
+
+.drinkInfobox {
+  border-radius: 25px;
+  background: whitesmoke;
+  padding: 20px;
+  width: 320px;
+  height: 350px;
+  position: absolute;
+  left: 16px;
+  bottom: -300px;
+}
+
+#button1 {
+  background-color: pink;
+  border-radius: 25px;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  position: relative;
+    left: -2px;
+    top: 161px;
+}
+
+#button2 {
+  background-color: pink;
+  border-radius: 25px;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  position: relative;
+  left: 9px;
+  top: 161px;
+}
+

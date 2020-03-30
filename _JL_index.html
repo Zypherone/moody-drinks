@@ -88,15 +88,15 @@
 
             for (var i = 1; i < 15; i++) {
               if (resultstwo[0]["strIngredient" + i] != null) {
-                var drinkIngredient = resultstwo[0]["strIngredient" + i];
+                drinkIngredient = resultstwo[0]["strIngredient" + i];
               } else {
-                var drinkIngredient = "";
+                drinkIngredient = "";
               }
 
               if (resultstwo[0]["strMeasure" + i] != null) {
-                var drinkMesurement = resultstwo[0]["strMeasure" + i];
+                drinkMesurement = resultstwo[0]["strMeasure" + i];
               } else {
-                var drinkMesurement = "";
+                drinkMesurement = "";
               }
 
               if (drinkIngredient != "" || drinkMesurement != "") {
