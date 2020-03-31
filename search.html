@@ -102,7 +102,10 @@
 
                     drinkIngredientS.text(ingredients);
 
-                    drinkDivS.append(drinkNameS, drinkImageS, drinkInstrS, drinkIngredientS);
+                    let favouritesBtn = $("<button>").text("Favourites");
+                    let tryBtn = $("<button>").text("Try It Later");
+
+                    drinkDivS.append(drinkNameS, drinkImageS, drinkInstrS, drinkIngredientS, favouritesBtn, tryBtn);
                     $(".results").append(drinkDivS);
                 }
                 }
@@ -207,10 +210,13 @@
                             //     drinkInstrS.text(response.drinks.strInstructions);
                             // })
 
+                            let favouritesBtn = $("<button>").text("Favourites");
+                            let tryBtn = $("<button>").text("Try It Later");
+
                             let drinkDivS = $("<div>");
 
                             // drinkDivS.append(drinkNameS, drinkImageS, drinkInstrS);
-                            drinkDivS.append(drinkNameS, drinkImageS);
+                            drinkDivS.append(drinkNameS, drinkImageS, favouritesBtn, tryBtn);
                             yourChoice.append(drinkDivS);
                         }
 
@@ -220,7 +226,10 @@
                             let drinkImageS = $("<img>").attr("src", results4[i].strDrinkThumb);
                             let drinkDivS = $("<div>");
 
-                            drinkDivS.append(drinkNameS, drinkImageS);
+                            let favouritesBtn = $("<button>").text("Favourites");
+                            let tryBtn = $("<button>").text("Try It Later");
+
+                            drinkDivS.append(drinkNameS, drinkImageS, favouritesBtn, tryBtn);
                             yourChoice.append(drinkDivS);
                             }
                         }
@@ -310,7 +319,10 @@
                             let drinkImageS = $("<img>").attr("src", results5[0].strDrinkThumb);
                             let drinkDivS = $("<div>");
 
-                            drinkDivS.append(drinkNameS, drinkImageS);
+                            let favouritesBtn = $("<button>").text("Favourites");
+                            let tryBtn = $("<button>").text("Try It Later");
+
+                            drinkDivS.append(drinkNameS, drinkImageS, favouritesBtn, tryBtn);
                             yourChoice.append(drinkDivS);
                         }
 
@@ -322,7 +334,10 @@
                                 let drinkImageS = $("<img>").attr("src", results5[i].strDrinkThumb);
                                 let drinkDivS = $("<div>");
 
-                                drinkDivS.append(drinkNameS, drinkImageS);
+                                let favouritesBtn = $("<button>").text("Favourites");
+                                let tryBtn = $("<button>").text("Try It Later");
+
+                                drinkDivS.append(drinkNameS, drinkImageS, favouritesBtn, tryBtn);
                                 yourChoice.append(drinkDivS);
                             }
 
