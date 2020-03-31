@@ -72,14 +72,16 @@ section {
   flex-grow: 2;
   background: white;
   border-radius: 1em 0 0 1em;
-  margin: 0 0 1em 1em;
+  margin: 0 0 4em 1em;
   padding: 1em;
   border: 1px solid #eee;
 }
 footer {
   background: whitesmoke;
   /*box-shadow: 0 0 5px #333;*/
-  height: 100px
+  /*height: 100px*/
+  padding: .7em 0;
+  z-index: 5;
 }
 
 footer ul,
@@ -150,31 +152,43 @@ footer li:hover a {
 }
 
 .slide {
-  background-repeat: no-repeat;
-  /*
-  float: left;*/
   height: 450px;
-  background-position: -100px 0;
+  display: flex;
   flex-grow: 1;
   flex-shrink: 1;
 }
 
-.slide span {
+.mood-slide {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
   display: block;
   cursor: pointer;
   z-index: 0;
   transition: transform .4s;
   position: relative;
   z-index: 2;
+  flex-grow: 1;
 }
 
-.slide:hover span {
-  box-shadow: 0 0 10px #000;
-  border-radius: .5em;
-  transform: scale(1.1); 
-  transform-origin: 50%;
-  z-index: 5;
-  position: relative;
+.mood-text {
+  color: #ffffff;
+  font-size: 2em;
+  text-shadow: 1px 1px 1px #333;
+}
+
+
+@media only screen and (min-width: 500px) {
+
+  .slide:hover .mood-slide {
+    box-shadow: 0 0 10px #000;
+    border-radius: .5em;
+    transform: scale(1.1); 
+    transform-origin: 50%;
+    z-index: 5;
+    position: relative;
+  }
+
 }
 
 /*
@@ -195,27 +209,27 @@ footer li:hover a {
   font-weight: 100;
 }
 
-#slide-0 span {
+#slide-0 .mood-slide {
     background-image: url(https://www.creads.fr/app/uploads/sites/1/2017/06/julie-richard-tignol.jpg);
 }
 
-#slide-1 span {
+#slide-1 .mood-slide {
     background-image: url(https://i.ytimg.com/vi/x9mGRTaD_00/maxresdefault.jpg);
 }
 
-#slide-2 span {
+#slide-2 .mood-slide {
     background-image: url(https://static.abplive.com/wp-content/uploads/sites/5/2019/12/30152440/booze-party.jpg);
 }
 
-#slide-3 span {
+#slide-3 .mood-slide {
     background-image: url(https://im.rediff.com/getahead/2015/nov/25smile.jpg);
 }
 
-#slide-4 span {
+#slide-4 .mood-slide {
     background-image: url(https://www.incimages.com/uploaded_files/image/970x450/getty_1063202836_412690.jpg);
 }
 
-#slide-5 span {
+#slide-5 .mood-slide {
   background-color: #000000;
 }
 .slider-nav {
@@ -255,11 +269,17 @@ footer li:hover a {
   }
 
   .slide {
+    height: auto;
     min-height: 100%;
     min-width: 100%;
     scroll-snap-align: start;
   }
 
+  /*
+  .slide span {
+
+  }
+*/
   .slider-nav {
     background: rgba(255,255,255,.5);
     display: block !important;
@@ -280,3 +300,10 @@ footer li:hover a {
     text-decoration: none;
   }
 } 
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
