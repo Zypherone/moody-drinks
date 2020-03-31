@@ -69,27 +69,29 @@
 
                 let results = response.drinks;
 
+                let resultsNew = shuffle(results);
+
                 let drinkIngredient = "";
                 let drinkMesurement = "";
                 let ingredients = "";
 
                 if (results !== null) {
-                    for (i = 0; i < results.length; i++) {
-                    let drinkNameS = $("<p>").text(results[i].strDrink);
-                    let drinkImageS = $("<img>").attr("src", results[i].strDrinkThumb);
-                    let drinkInstrS = $("<p>").text(results[i].strInstructions);
+                    for (i = 0; i < 5; i++) {
+                    let drinkNameS = $("<p>").text(resultsNew[i].strDrink);
+                    let drinkImageS = $("<img>").attr("src", resultsNew[i].strDrinkThumb);
+                    let drinkInstrS = $("<p>").text(resultsNew[i].strInstructions);
                     let drinkIngredientS = $("<p>");
                     let drinkDivS = $("<div>");
                     
                     for (j = 1; j < 15; j++) {
-                        if (results[i]["strIngredient" + j] != null) {
-                        let drinkIngredient = results[i]["strIngredient" + j];
+                        if (resultsNew[i]["strIngredient" + j] != null) {
+                        let drinkIngredient = resultsNew[i]["strIngredient" + j];
                         } else {
                         let drinkIngredient = "";
                         }
 
-                        if (results[i]["strMeasure" + j] != null) {
-                        let drinkMesurement = results[i]["strMeasure" + j];
+                        if (resultsNew[i]["strMeasure" + j] != null) {
+                        let drinkMesurement = resultsNew[i]["strMeasure" + j];
                         } else {
                         let drinkMesurement = "";
                         }
