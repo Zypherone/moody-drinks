@@ -60,6 +60,7 @@ h3 {
   border-radius: 25px;
   background:whitesmoke;
   padding: 20px;
+  margin-bottom: 20px;
   width: 250px;
   height: 100px;
   position: absolute;
@@ -110,6 +111,7 @@ h5 {
 .drinkInfobox {
   border-radius: 25px;
   background: whitesmoke;
+  margin-bottom: 10px;
   padding: 20px;
   width: 280px;
   height: 358px;
