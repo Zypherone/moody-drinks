@@ -11,7 +11,7 @@
             <h2>Search Parameters</h2>
             <div class="name">
                 <label>Cocktail Name</label>
-                <input id="name" placeholder="Zipperhead">
+                <input id="name" placeholder="Margarita">
             </div>
             <div class="button-container">
                 <button id="name-search-btn">Search</button>
@@ -114,6 +114,11 @@
                     $(".results").html("No results returned!")
                 }
             })
+        })
+
+        $(".clear").on("click", function() {
+            $("#name").val("");
+            $(".results").empty();
         })
 
         $("#ingredient-search-btn").on("click", function(e) {
