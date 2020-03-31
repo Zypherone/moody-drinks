@@ -1,3 +1,4 @@
+/*favourites Page*/
 body {
     background-color: white;
   }
@@ -15,10 +16,13 @@ body {
   }
   
   section {
+    display: flex;
     flex-grow: 2;
     background: white;
     padding: 0em;
     margin: 0;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
   
   .image {
@@ -69,6 +73,8 @@ body {
   }
   
   /*styles for Results page*/
+
+
   body {
     background-color: white;
   }
@@ -77,12 +83,12 @@ body {
     border-radius: 10px;
     background-image: url("kugu2m1504735473.jpg");
     background-position: left top;
-    width: 700px; /*Desktop*/
-    height: 400px; /*Desktop*/
+    width: 150px; /*Desktop*/
+    height: 150px; /*Desktop*/
     margin: 30px;
     position: relative;
-      top: 11px; /*Desktop*/
-      right: -69px; /*Desktop*/
+      top: 39px; /*Desktop*/
+      right: -35px; /*Desktop*/
   }
   
   h2 {
@@ -106,17 +112,29 @@ body {
       left: 29px;
       top: 0px;
   }
+
+  .imageResults:hover div {
+    display: block;
+  }
+
   
   .drinkInfobox {
     border-radius: 25px;
     background: whitesmoke;
     margin-bottom: 10px;
     padding: 20px;
-    width: 280px;
+    width: 300px;
     height: 358px;
     position: absolute;
-    left: 500px; /*Desktop*/
-    bottom: -322px;; /*Desktop*/
+    left: -49px;
+    bottom: -441px;
+    display: none;
+  }
+
+
+  .hidden5 {
+    position: absolute;
+    left: -144px;
   }
   
   #button1 {
@@ -147,7 +165,7 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     position: relative;
-    left: 9px;
+    left: 34px;
     top: 276px;
   }
   
