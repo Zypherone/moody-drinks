@@ -30,8 +30,8 @@ section {
   height: 550px;
   margin: 30px;
   position: relative;
-    top: -33px;
-    right: -14px;
+    top: -46px;
+    right: -19px
 }
 
 h2 {
@@ -64,7 +64,7 @@ h3 {
   width: 250px;
   height: 100px;
   position: absolute;
-    bottom: -37px;
+    bottom: -45px;
     left: -38px;
 
 }
@@ -151,5 +151,7 @@ h5 {
   left: 9px;
   top: 276px;
 }
+
+
 
 

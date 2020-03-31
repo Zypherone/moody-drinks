@@ -1,0 +1,155 @@
+body {
+    background-color: white;
+  }
+  
+  header {
+    background: whitesmoke;
+    /* box-shadow: 0 0 5px #333; */
+    height: 100px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+    display: none;
+  }
+  
+  section {
+    flex-grow: 2;
+    background: white;
+    padding: 0em;
+    margin: 0;
+  }
+  
+  .image {
+    border-radius: 10px;
+    background-image: url("kugu2m1504735473.jpg");
+    background-position: left top;
+    width: 350px;
+    height: 550px;
+    margin: 40px;
+    position: relative;
+        top: 30px;
+        right: -17px;
+  }
+  
+  h2 {
+    color : white;
+    padding: 30px;
+    position: relative;
+      right: -2px;
+      top: 18px;
+  }
+  
+  .favourite {
+    width: 20px;
+    height: 20px;
+    position: relative;
+      left: -5px;
+      top: -10px;
+  }
+  
+  h3 {
+    position: relative;
+      left: 29px;
+      top: 0px;
+  }
+  
+  .card-body {
+    border-radius: 25px;
+    background:whitesmoke;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 250px;
+    height: 100px;
+    position: absolute;
+        bottom: -95px; /*desktop*/
+        left: -27px;  /*desktop*/
+  
+  }
+  
+  /*styles for Results page*/
+  body {
+    background-color: white;
+  }
+  
+  .imageResults {
+    border-radius: 10px;
+    background-image: url("kugu2m1504735473.jpg");
+    background-position: left top;
+    width: 700px; /*Desktop*/
+    height: 400px; /*Desktop*/
+    margin: 30px;
+    position: relative;
+      top: 11px; /*Desktop*/
+      right: -69px; /*Desktop*/
+  }
+  
+  h2 {
+    color : white;
+    padding: 30px;
+    position: relative;
+      right: -4px;
+      top: 4px;
+  }
+  
+  .favourite {
+    width: 20px;
+    height: 20px;
+    position: relative;
+      left: -5px;
+      top: -10px;
+  }
+  
+  h5 {
+    position: relative;
+      left: 29px;
+      top: 0px;
+  }
+  
+  .drinkInfobox {
+    border-radius: 25px;
+    background: whitesmoke;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 280px;
+    height: 358px;
+    position: absolute;
+    left: 500px; /*Desktop*/
+    bottom: -322px;; /*Desktop*/
+  }
+  
+  #button1 {
+    background-color: pink;
+    border-radius: 25px;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    position: relative;
+      left: -2px;
+      top: 276px;
+  }
+  
+  #button2 {
+    background-color: pink;
+    border-radius: 25px;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    position: relative;
+    left: 9px;
+    top: 276px;
+  }
+  
+  
+  
