@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Moody Drinks</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="handlebars.min-v4.7.3.js"></script>
-    <link rel="stylesheet" href="css-reset.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="handlebars.min-v4.7.3.js"></script>
+    <link rel="stylesheet" href="css-reset.css" />    
     <link rel="stylesheet" href="mobile.css" />
   </head>
   <body>
@@ -30,48 +30,53 @@
 
       </header>
       <section>
-        <div class="slider" id="slider">
-          <div class="holder">
-            <div class="slide" id="slide-0" data-type="drink" data-drink="vodka">
-              <div class="mood-slide">
-                <span class="mood-text">After Work~</span>
+        <div id="page-landing" class="viewport active">
+          <div class="slider" id="slider">
+            <div class="holder">
+              <div class="slide" id="slide-0" data-type="drink" data-drink="vodka" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">After Work~</span>
+                </div>
               </div>
-            </div>
-            <div class="slide" id="slide-1" data-type="drink" data-drink="gin">
-              <div class="mood-slide">
-                <span class="mood-text">Kinda Blue..</span>
+              <div class="slide" id="slide-1" data-type="drink" data-drink="gin" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Kinda Blue..</span>
+                </div>
               </div>
-            </div>
-            <div class="slide" id="slide-2" data-type="drink" data-drink="tequila">
-              <div class="mood-slide">
-                <span class="mood-text">Party Time!!!</span>
+              <div class="slide" id="slide-2" data-type="drink" data-drink="tequila" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Party Time!!!</span>
+                </div>
               </div>
-            </div>
-            <div class="slide" id="slide-3" data-type="drink" data-drink="rum">
-              <div class="mood-slide">
-                <span class="mood-text">Easy option</span>
+              <div class="slide" id="slide-3" data-type="drink" data-drink="rum" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Easy option</span>
+                </div>
               </div>
-            </div>
-            <div class="slide" id="slide-4" data-type="mocktails" data-mocktails="Non_Alcoholic">
-              <div class="mood-slide">
-                <span class="mood-text">Feeling safe</span>
+              <div class="slide" id="slide-4" data-type="mocktails" data-drink="Non_Alcoholic" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Feeling safe</span>
+                </div>
               </div>
-            </div>
-            <div class="slide" id="slide-5" data-type="random" data-random="random">
-              <div class="mood-slide">
-                <span class="mood-text">Surprise me!</span>
+              <div class="slide" id="slide-5" data-type="random" data-drink="random" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Surprise me!</span>
+                </div>
               </div>
             </div>
           </div>
+          <nav class="slider-nav">
+            <a href="#slide-0">😀</a>
+            <a href="#slide-1">😔</a> 
+            <a href="#slide-2">😆</a> 
+            <a href="#slide-3">🙂</a> 
+            <a href="#slide-4">❤</a>
+            <a href="#slide-4">❤</a>
+          </nav>
         </div>
-        <nav class="slider-nav">
-          <a href="#slide-0">😀</a>
-          <a href="#slide-1">😔</a> 
-          <a href="#slide-2">😆</a> 
-          <a href="#slide-3">🙂</a> 
-          <a href="#slide-4">❤</a>
-          <a href="#slide-4">❤</a>
-        </nav>
+        <div id="page-results" class="viewport hide collapse">
+          <p>Results page!</p>
+        </div>
       </section>
       <footer>
         <ul>
