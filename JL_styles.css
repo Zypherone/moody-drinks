@@ -116,9 +116,9 @@ h5 {
   padding: 20px;
   width: 280px;
   height: 358px;
-  position: absolute;
-    left: 16px;
-    bottom: -322px;
+  position: relative;
+    left: 2px;
+    bottom: -215px;
 }
 
 #button1 {
@@ -133,8 +133,8 @@ h5 {
   font-size: 16px;
   margin: 4px 2px;
   position: relative;
-    left: -2px;
-    top: 276px;
+  left: -110px;
+  top: 233px;
 }
 
 #button2 {
@@ -149,8 +149,8 @@ h5 {
   font-size: 16px;
   margin: 4px 2px;
   position: relative;
-  left: 9px;
-  top: 276px;
+    left: 157px;
+    top: 181px
 }
 
 

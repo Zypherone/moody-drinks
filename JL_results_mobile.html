@@ -21,19 +21,40 @@
 
           </header>
       <section>
-        <div class = "imageResults" id="cocktail">
-            <h2>{{drinksResult}}</h2>
-                
-                <div class="drinkInfobox">
-                  <h3 id = "nav-icon" class="card-title">
-                    <p>{{ingredients}}</p>
-                    <p>{{drinkInfo}}</p>
-                  </h3>
-                  <button type="button" id = "button1">Favourite</button>
-                  <button type="button" id = "button2">Try Later</button>
-                </div>
+        <div id="page-results" class="viewport active">
+          <div class="results template">
+
+            <div class="slider" id="slider">
+                <div class="holder">
+                  
+                    {{#each results}}
+                      <div class="slide">
+                        <div class = "imageResults" id="cocktail">
+                            <h2>{{this.name}}</h2>
+                                
+                              <div class="drinkInfobox">
+                                <h3 id = "nav-icon" class="card-title">
+                                {{#each this.ingredients}}
+                                  <p>
+                                      <span class="results-measurement">{{this.measurement}}</span> 
+                                      <span class="results-name">{{this.name}}</span>
+                                  </p>
+                                  <br>
+                                  {{/each}}
+                                  <h3>Instructions/Steps</h3>
+                                  {{this.instructions}}
+                                  <button type="button" id = "button1">Favourite</button>
+                                  <button type="button" id = "button2">Try Later</button>
+                                </div>
+                          </div>
+                        </div>
+                      {{/each}}
+
+              </div>
             </div>
+
           </div>
+        </div>
       </section>
       
       <footer>

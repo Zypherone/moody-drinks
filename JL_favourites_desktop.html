@@ -24,66 +24,29 @@
 
       </header>
       <section>
-      
-          <div class="slider" id="slider">
-            <div class="holder">
-              <div class="slide">
-                <div class = "image" id="cocktail">
-                  <h2>Moody Drink Just for you...</h2>
-                  <div class="card-body">
-                    <div class="favourite">&#10084;</div>
-                    <h5 id = "nav-icon" class="card-title">{{drinksResult}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="slide">
-                <div class = "image" id="cocktail">
-                  <h2>Moody Drink Just for you...</h2>
-                  <div class="card-body">
-                    <div class="favourite">&#10084;</div>
-                    <h5 id = "nav-icon" class="card-title">{{drinksResult}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="slide">
-                <div class = "image" id="cocktail">
-                  <h2>Moody Drink Just for you...</h2>
-                  <div class="card-body">
-                    <div class="favourite">&#10084;</div>
-                    <h5 id = "nav-icon" class="card-title">{{drinksResult}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="slide">
-                <div class = "image" id="cocktail">
-                  <h2>Moody Drink Just for you...</h2>
-                  <div class="card-body">
-                    <div class="favourite">&#10084;</div>
-                    <h5 id = "nav-icon" class="card-title">{{drinksResult}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="slide">
-                <div class = "image" id="cocktail">
-                  <h2>Moody Drink Just for you...</h2>
-                  <div class="card-body">
-                    <div class="favourite">&#10084;</div>
-                    <h5 id = "nav-icon" class="card-title">{{drinksResult}}</h5>
-                  </div>
-                </div>
-              </div>
-              <div class="slide" id="slide-5" >
-                <div class = "image" id="cocktail">
-                  <h2>Moody Drink Just for you...</h2>
-                  <div class="card-body">
-                    <div class="favourite">&#10084;</div>
-                    <h5 id = "nav-icon" class="card-title">{{drinksResult}}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="page-results" class="viewport active">
+          <div class="results template">
+            
+              <div class="slider" id="slider">
+                <div class="holder">
 
+                  {{#each results}}
+                  <div class="slide">
+                    <div class = "image" id="cocktail">
+                      <h2>Moody Drink Just for you...</h2>
+                      <div class="card-body">
+                        <div class="favourite">&#10084;</div>
+                        <h5 id = "nav-icon" class="card-title">{{this.name}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  {{/each}}
+
+                </div>
+              </div>
+              
+          </div>
+        </div>
       </section>  
       <footer>
         <ul>
