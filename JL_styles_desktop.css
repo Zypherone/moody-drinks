@@ -78,6 +78,7 @@ body {
   body {
     background-color: white;
   }
+
   
   .imageResults {
     border-radius: 10px;
@@ -87,7 +88,7 @@ body {
     height: 150px; /*Desktop*/
     margin: 30px;
     position: relative;
-      top: 39px; /*Desktop*/
+      top: 12px; /*Desktop*/
       right: -35px; /*Desktop*/
   }
   
@@ -123,13 +124,24 @@ body {
     background: whitesmoke;
     margin-bottom: 10px;
     padding: 20px;
-    width: 300px;
-    height: 358px;
-    position: absolute;
-    left: -49px;
-    bottom: -441px;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    left: 196px;
+    bottom: 478px;
     display: none;
   }
+
+
+ .background {
+  border-radius: 25px;
+  height: 400px;
+  width: 500px;
+  position: relative;
+    bottom: -147px;
+    right: -464px;
+  display: none;
+}
 
 
   .hidden5 {
@@ -149,8 +161,8 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     position: relative;
-      left: -2px;
-      top: 276px;
+      left: 19px;
+      top: 310px;
   }
   
   #button2 {
@@ -165,8 +177,8 @@ body {
     font-size: 16px;
     margin: 4px 2px;
     position: relative;
-    left: 34px;
-    top: 276px;
+      left: 109px;
+      top: 308px;
   }
   
   

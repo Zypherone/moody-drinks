@@ -26,7 +26,7 @@
 
             <div class="slider" id="slider">
                 <div class="holder">
-                  
+
                     {{#each results}}
                       <div class="slide">
                         <div class = "imageResults" id="cocktail">
@@ -43,8 +43,8 @@
                                   {{/each}}
                                   <h3>Instructions/Steps</h3>
                                   {{this.instructions}}
-                                  <button type="button" id = "button1">Favourite</button>
-                                  <button type="button" id = "button2">Try Later</button>
+                                  <button type="button" id = "button1" data-type="shortcut" data-page="list-try" data-id="{{this.id}}">Favourite</button>
+                                  <button type="button" id = "button2" data-type="shortcut" data-page="list-fav" data-id="{{this.id}}">Try Later</button>
                                 </div>
                           </div>
                         </div>
