@@ -16,25 +16,32 @@
         method: "GET"
       }).then(function(response) {
         console.log(response);
+        
 
         var results = response.drinks;
         var randomEl = Math.floor(Math.random() * results.length);
         console.log(randomEl);
 
-        var drinkDiv = $("<div>");
-        var drinkName = $("<p>").text(
-          "Drink recommendation: " + results[randomEl].strDrink
-        );
-        var drinkImage = $("<img>");
-        drinkImage.attr("src", results[randomEl].strDrinkThumb);
+        jsonObj = [{
+            id: results[randomEl].idDrink,
+            name: results[randomEl].strDrink,
+            image: results[randomEl].strDrinkThumb,
+            instructions: "",
+            ingredients: []
+          }];
 
+          console.log(jsonObj[0].id);
+          console.log(jsonObj[0].name);
+          console.log(jsonObj[0].image);
+          
+           
         var drinkId = results[randomEl].idDrink;
         console.log(drinkId);
 
         var drinkIngredient = "";
         var drinkMesurement = "";
-        var ingredients = "";
-        var drinkInstr = "";
+        var ingredients = ""; 
+        
 
         // grab the drink ID to bring up instructions
         var queryURL =
@@ -47,42 +54,41 @@
           console.log(response);
           var resultstwo = response.drinks;
 
-          console.log(resultstwo[0].strInstructions);
-
-          drinkInstr = $("<p>").text(
-            "Instructions: " + resultstwo[0].strInstructions
-          );
-
+          jsonObj[0].instructions = resultstwo[0].strInstructions;
+                      
           for (var i = 1; i < 15; i++) {
             if (resultstwo[0]["strIngredient" + i] != null) {
-              var drinkIngredient = resultstwo[0]["strIngredient" + i];
+              drinkIngredient = resultstwo[0]["strIngredient" + i];
             } else {
-              var drinkIngredient = "";
+              drinkIngredient = "";
             }
 
             if (resultstwo[0]["strMeasure" + i] != null) {
-              var drinkMesurement = resultstwo[0]["strMeasure" + i];
+              drinkMesurement = resultstwo[0]["strMeasure" + i];
             } else {
-              var drinkMesurement = "";
+              drinkMesurement = "";
             }
 
             if (drinkIngredient != "" || drinkMesurement != "") {
               ingredients +=
                 "<span>" +
-                drinkMesurement +
-                " " +
                 drinkIngredient +
+                " " +
+                drinkMesurement +
                 "</span>";
+                let ingredientsObj = {
+                  name: drinkIngredient,
+                  mesurements: drinkMesurement
+                };
+     
+                jsonObj[0].ingredients.push(ingredientsObj);
             }
+
           }
-          console.log(ingredients);
-          $(drinkDiv).append(drinkInstr);
-          $(drinkDiv).append($("<p>").html(ingredients));
+          console.log(jsonObj[0].ingredients)
+          console.log(jsonObj[0].instructions);
         });
 
-        $(drinkDiv).append(drinkName);
-        $(drinkDiv).append(drinkImage);
-        $("#information-appear-here").prepend(drinkDiv);
       });
     }
 
@@ -97,26 +103,26 @@
         var randomEl = Math.floor(Math.random() * results.length);
         console.log(randomEl);
 
-        number = results[randomEl].idDrink;
+        jsonObj = [
+          {
+            id: results[randomEl].idDrink,
+            name: results[randomEl].strDrink,
+            image: results[randomEl].strDrinkThumb,
+            instructions: "",
+            ingredients: []
+          }
+        ];
 
-        var drinkDiv = $("<div>");
-
-        var drinkName = $("<p>").text(
-          "Drink recommendation: " + results[randomEl].strDrink
-        );
-
-        console.log(results[randomEl].strDrink);
-
-        var drinkImage = $("<img>");
-        drinkImage.attr("src", results[randomEl].strDrinkThumb);
+        console.log(jsonObj[0].id);
+        console.log(jsonObj[0].name);
+        console.log(jsonObj[0].image);
 
         var drinkId = results[randomEl].idDrink;
         console.log(drinkId);
 
-        var drinkIngredient = "";
-        var drinkMesurement = "";
+
         var ingredients = "";
-        var drinkInstr = "";
+
 
         var queryURL =
           "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" +
@@ -128,11 +134,7 @@
           console.log(response);
           var resultstwo = response.drinks;
 
-          console.log(resultstwo[0].strInstructions);
-
-          drinkInstr = $("<p>").text(
-            "Instructions: " + resultstwo[0].strInstructions
-          );
+          jsonObj[0].instructions = resultstwo[0].strInstructions;
 
           for (var i = 1; i < 15; i++) {
             if (resultstwo[0]["strIngredient" + i] != null) {
@@ -150,20 +152,21 @@
             if (drinkIngredient != "" || drinkMesurement != "") {
               ingredients +=
                 "<span>" +
-                drinkMesurement +
-                " " +
                 drinkIngredient +
+                " " +
+                drinkMesurement +
                 "</span>";
+              let ingredientsObj = {
+                name: drinkIngredient,
+                mesurements: drinkMesurement
+              };
+
+              jsonObj[0].ingredients.push(ingredientsObj);
             }
           }
-          console.log(ingredients);
-          $(drinkDiv).append(drinkInstr);
-          $(drinkDiv).append($("<p>").html(ingredients));
+          console.log(jsonObj[0].ingredients);
+          console.log(jsonObj[0].instructions);
         });
-
-        $(drinkDiv).append(drinkName);
-        $(drinkDiv).append(drinkImage);
-        $("#information-appear-here").prepend(drinkDiv);
       });
     }
 
@@ -175,27 +178,23 @@
         console.log(response);
 
         var results = response.drinks;
-
         console.log(results);
 
-        var drinkDiv = $("<div>");
+        jsonObj = [
+          {
+            id: results[0].idDrink,
+            name: results[0].strDrink,
+            image: results[0].strDrinkThumb,
+            instructions: results[0].strInstructions,
+            ingredients: []
+          }
+        ];
+        console.log(jsonObj[0].id);
+        console.log(jsonObj[0].name);
+        console.log(jsonObj[0].image);
 
-        var drinkName = $("<p>").text(
-          "Drink recommendation: " + results[0].strDrink
-        );
-
-        console.log(results[0].strIngredient1);
-
-        var drinkImage = $("<img>");
-        drinkImage.attr("src", results[0].strDrinkThumb);
-
-        var drinkInstr = $("<p>").text(
-          "Instructions: " + results[0].strInstructions
-        );
-
-        var drinkIngredient = "";
-        var drinkMesurement = "";
         var ingredients = "";
+
         for (var i = 1; i < 15; i++) {
           if (results[0]["strIngredient" + i] != null) {
             var drinkIngredient = results[0]["strIngredient" + i];
@@ -211,19 +210,21 @@
 
           if (drinkIngredient != "" || drinkMesurement != "") {
             ingredients +=
-              "<span>" + drinkMesurement + " " + drinkIngredient + "</span>";
+                "<span>" +
+                drinkIngredient +
+                " " +
+                drinkMesurement +
+                "</span>";
+              let ingredientsObj = {
+                name: drinkIngredient,
+                mesurements: drinkMesurement
+              }
+              jsonObj[0].ingredients.push(ingredientsObj);
+            }
           }
-        }
+        console.log(jsonObj[0].ingredients);
+        console.log(jsonObj[0].instructions);
 
-        $("<p>").html(ingredients);
-
-        console.log(drinkIngredient);
-
-        $(drinkDiv).append(drinkName);
-        $(drinkDiv).append(drinkImage);
-        $(drinkDiv).append(drinkInstr);
-        $(drinkDiv).append(ingredients);
-        $("#information-appear-here").prepend(drinkDiv);
       });
     }
 
