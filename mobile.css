@@ -100,17 +100,19 @@ footer li {
   flex-grow: 1;
 }
 
-footer a,
-footer a:hover {
+footer button,
+footer button:hover {
+  background: none;
   color: rgb(216, 123, 123);
-  text-decoration: none;
-  display: flex;
+  cursor: pointer;
+  border: 0;
   display: flex;
   align-content: center;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  width: 100%;
 }
 
 .nav-icon {
@@ -119,7 +121,7 @@ footer a:hover {
   font-size: 2em;
 }
 
-footer li:hover a {
+footer li:hover button {
   color: #000;
 }
 
@@ -328,5 +330,9 @@ footer {
 }
 
 .collapse {
+  display: none;
+}
+
+.template {
   display: none;
 }

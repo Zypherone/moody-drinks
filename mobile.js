@@ -24,6 +24,48 @@ function app() {
   return functionVar;
 }
 
+function renderPage(page) {
+
+  var pageTemplate = $('.results').html();
+
+  //console.log(pageTemplate);
+
+  
+  var template = Handlebars.compile(pageTemplate);
+  
+  var temp = template({ 
+    id: '1',
+    name: 'test',
+    instructions: 'blah blah blah',
+    ingredients: [{
+      name: 'test',
+      measurements: '1oz'
+    },
+    {
+      name: 'test 2',
+      measurements: '20 ml'
+    }]
+  });
+
+  $('#page-results').append(temp);
+  
+  /*
+  var temp = template({ 
+    id: '1',
+    name: 'test',
+    instructions: 'blah blah blah',
+    ingredients: [{
+      name: 'test',
+      measurements: '1oz'
+    },
+    {
+      name: 'test 2',
+      measurements: '20 ml'
+    }]
+  });
+  */
+}
+
 function fetchDataApi(e) {
 
   let queryUri;
@@ -57,7 +99,39 @@ function fetchDataApi(e) {
       
       //console.log(nextPage);
       //console.log(r);
+      
       app().hidePage();
+
+      renderPage();
+
+      //renderPage($('.results').html());
+      
+      /*
+      var pageTemplate = $('.results').html();
+
+      //console.log(pageTemplate);
+
+      
+      var template = Handlebars.compile(pageTemplate);
+      var temp = template({
+        instructions: 'test'
+      });
+      
+      /*
+      var temp = template({ 
+        id: '1',
+        name: 'test',
+        instructions: 'blah blah blah',
+        ingredients: [{
+          name: 'test',
+          measurements: '1oz'
+        },
+        {
+          name: 'test 2',
+          measurements: '20 ml'
+        }]
+      });
+*/
       app().showPage(nextPage);
       //console.log(r);
 
@@ -80,3 +154,8 @@ function fetchDataApi(e) {
 }
 
 $(document).on('click', '.slide', fetchDataApi);
+
+/*
+app().hidePage();
+app().showPage('results');
+*/
