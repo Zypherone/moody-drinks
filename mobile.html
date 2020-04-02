@@ -30,25 +30,26 @@
 
       </header>
       <section>
-        <div class="results template">
-          {{#each results}}
-          <div class="body-results">
-            <h2>{{this.name}}</h2>
-            {{#each this.ingredients}}
-            <p>
-              <span class="results-measurement">{{this.measurement}}</span> 
-              <span class="results-name">{{this.name}}</span>
-            </p>
+        <div id="page-results" class="viewport active">
+          <div class="results template">
+            {{#each results}}
+            <div class="body-results">
+              <h2>{{this.name}}</h2>
+              {{#each this.ingredients}}
+              <p>
+                <span class="results-measurement">{{this.measurement}}</span> 
+                <span class="results-name">{{this.name}}</span>
+              </p>
+              {{/each}}
+              <h3>Instructions/Steps</h3>
+              {{this.instructions}}
+              <div id="results-shortcut">
+                <button data-type="shortcut" data-page="list-try" data-id="{{this.id}}">Try Later</button>
+                <button data-type="shortcut" data-page="list-fav" data-id="{{this.id}}">Favourite</button>
+              </div>
+            </div>
             {{/each}}
-            <h3>Instructions/Steps</h3>
-            {{this.instructions}}
-            <div id="results-shortcut">
-              <button data-type="shortcut" data-page="list-try" data-id="{{this.id}}">Try Later</button>
-              <button data-type="shortcut" data-page="list-fav" data-id="{{this.id}}
-">Favourite</button>
-</div>
           </div>
-          {{/each}}
         </div>
       </section>
       <footer>
