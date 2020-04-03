@@ -41,6 +41,10 @@ header {
   padding: 1em;
 }
 
+header {
+  display: none;
+}
+
 h1 {
   font-size: 1.3em;
   padding-left: 79px;
@@ -75,7 +79,7 @@ section {
   background: white;
   border-radius: 1em 0 0 1em;
   margin: 0 0 60px 1em;
-  padding: 1em;
+  padding: 1em 0 1em 1em;
   border: 1px solid #eee;
 }
 footer {
@@ -349,7 +353,7 @@ footer {
   display: none;
 }
 
-
+#page-results,
 #page-list-try,
 #page-list-fav {
   overflow-x: scroll;
@@ -357,13 +361,41 @@ footer {
 }
 
 .body-results {
+
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
   border-radius: 1em;
-  padding: 1em;
   color: #ffff;
+  padding: 1em;
   scroll-snap-align: start;
+  
+  min-width: calc(100% - 4em);
+  max-height: calc(100% - 2em);
+}
+
+.body-results h2 {
+  flex-grow: 1;
   text-shadow: 1px 1px 1px #333333;
 }
 
-.results-info-box {
+.body-results h3 {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin: 1em 0 .5em;
+}
+
+.body-results-container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
   
+}
+
+.results-info-box {
+  background: #f5f5f5;
+  color: #333;
+  border-radius: 1em;
+  padding: 1em; 
 }

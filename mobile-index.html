@@ -89,34 +89,36 @@
           <div class="template-results template">
             {{#each results}}
             <div class="body-results" style="background-image: url({{this.image}})">
-              <h2>{{this.name}}</h2>
-              <div class="results-info-box">
-                <h3>Ingredients</h3>
-                {{#each this.ingredients}}
-                <p>
-                  <span class="results-measurement">{{this.measurement}}</span> 
-                  <span class="results-name">{{this.name}}</span>
-                </p>
-                {{/each}}
-                <h3>Instructions/Steps</h3>
-                {{this.instructions}}
-                <div id="results-shortcut">
-                    <div class="ui large buttons">
-                    <button class="ui teal button"
-                      data-type="shortcut" 
-                      data-page="list-try" 
-                      data-id="{{this.id}}" 
-                      data-name="{{this.name}}"
-                    >Try Later
-                  </button>
-                  <div class="or"></div>
-                    <button class="ui pink button" 
-                      data-type="shortcut" 
-                      data-page="list-fav" 
-                      data-id="{{this.id}}" 
-                      data-name="{{this.name}}"
-                      >Favourite
+              <div class="body-results-container">
+                <h2>{{this.name}}</h2>
+                <div class="results-info-box">
+                  <h3>Ingredients</h3>
+                  {{#each this.ingredients}}
+                  <p>
+                    <span class="results-measurement">{{this.measurement}}</span> 
+                    <span class="results-name">{{this.name}}</span>
+                  </p>
+                  {{/each}}
+                  <h3>Instructions/Steps</h3>
+                  {{this.instructions}}
+                  <div id="results-shortcut">
+                      <div class="ui mini two buttons">
+                      <button class="ui teal button"
+                        data-type="shortcut" 
+                        data-page="list-try" 
+                        data-id="{{this.id}}" 
+                        data-name="{{this.name}}"
+                      >Try Later
                     </button>
+                    <div class="or"></div>
+                      <button class="ui pink button" 
+                        data-type="shortcut" 
+                        data-page="list-fav" 
+                        data-id="{{this.id}}" 
+                        data-name="{{this.name}}"
+                        >Favourite
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

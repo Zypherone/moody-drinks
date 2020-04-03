@@ -26,9 +26,11 @@ function app() {
       $('.ui.active').addClass('dimmer');
       activePage.addClass('hide').removeClass('engaged').delay(700).queue(function(next){
         // Store template into a var to append for later use
-        var tpl = $(this).children()[0];
-        $(this).empty();
-        $(this).append(tpl);
+        if (activePage.attr('id') !== 'page-landing') {
+          var tpl = $(this).children()[0];
+          $(this).empty();
+          $(this).append($(tpl));
+        }        
         $(this).addClass("collapse");
         next();
       });
@@ -108,9 +110,9 @@ function buildTemplate(drinkId, drinkName, drinkImage, drinkInstructions) {
   return {
     id: drinkId,
     name: drinkName,
-    image: drinkImage,
+    image: '',
     ingredients: [],
-    instructions: drinkInstructions
+    instructions: ''
   }
 }
 
@@ -119,6 +121,7 @@ function buildResults(resp) {
   app().hidePage();
 
   var nextPage = app().getPage();
+  var complete = false;
 
   // Let set and prepare the json Object for handlebar.
   var jsonObj = {
@@ -129,66 +132,82 @@ function buildResults(resp) {
        
     var data = resp.val();
         data = Object.values(data);
+    var returnedLength = data.length;
 
   }
   else { 
 
     var data = resp.drinks;
         data = _.shuffle(data);
+        data = data.slice(0,5)
+    var returnedLength = 5;
     
   }
 
   // Check to see if there is any valid data, if so, lets build it.
   if ( data !== null ) {
+
+    var counter = 0;
+
+    function sendRequest(dataObj, index) {
+      return new Promise((resolve, reject) => {
+
+        var obj = new buildTemplate(dataObj.idDrink, dataObj.strDrink, dataObj.strDrinkThumb);
+        jsonObj.results.push(obj);
+
+        $.ajax({
+          url: apiBaseUri + 'lookup.php?i=' + dataObj.idDrink,
+          method: "GET"
+        })
+        .then(function(resp) {
+          counter++;
     
-    var returnedLength = data.length;
-    for(i=0;i<returnedLength;i++) {
+          var r = resp.drinks[0];
+          var x  = _.findKey(jsonObj.results, { 'id': r.idDrink });
+          
+          jsonObj.results[x].image = r.strDrinkThumb;
+          jsonObj.results[x].instructions = r.strInstructions;
 
-      var obj = new buildTemplate(data[i].idDrink, data[i].strDrink, data[i].strDrinkThumb);
-      jsonObj.results.push(obj);
-      
-      // Start of second ajax call for the rest of the data.
-      $.ajax({
-        url: apiBaseUri + 'lookup.php?i=' + data[i].idDrink,
-        method: "GET"
-      }).then(function(resp) {
-        
-        var r = resp.drinks[0];
-        obj.image = obj.image ? obj.image : r.strDrinkThumb;
-        obj.instructions = r.strInstructions;
+          for (var k=1; k<=15; k++) {
 
-        for (var k=1; k<=15; k++) {
+            var ingredient = '',
+                measurement = '';
 
-          var ingredient = '',
-              measurement = '';
+            if (r["strIngredient" + k] != null) {
+              ingredient= r["strIngredient" + k];
+            } 
 
-          if (r["strIngredient" + k] != null) {
-            ingredient= r["strIngredient" + k];
-          } 
+            if (r["strMeasure" + k] != null) {
+              measurement = r["strMeasure" + k];
+            } 
 
-          if (r["strMeasure" + k] != null) {
-            measurement = r["strMeasure" + k];
-          } 
+            // Check if both ingredient and measurement are not empty strings
+            if (ingredient != "" || measurement != "") {            
 
-          // Check if both ingredient and measurement are not empty strings
-          if (ingredient != "" || measurement != "") {            
+              // Push data is the handlebar object
+              
+              jsonObj.results[x].ingredients.push({
+                name: ingredient,
+                measurement: measurement
+              });
+              
+            }
+          } // END OF FOR LOOP
 
-            // Push data is the handlebar object
-            obj.ingredients.push({
-              name: ingredient,
-              measurement: measurement
-            });
+        })
+        .then(function() {
+          if (counter == data.length) {
+            renderPage(nextPage, jsonObj);
+            app().showPage(nextPage);
           }
-        }
-
-        // If we have completed the last callback, we can render the page.
-        if (i === returnedLength) {
-          renderPage(nextPage, jsonObj);
-          app().showPage(nextPage);
-        }
+        })
       });
-
     }
+
+
+    promises = [];
+    
+    data.forEach((dataObj, index) => promises.push(sendRequest(dataObj, index)));
 
   }
   else {
@@ -292,10 +311,6 @@ function fetchDataApi(e) {
 $('#back-button').on('click', function() {
   app().hidePage();
   app().showPage('landing');
-  
-}).delay(700).queue(function(next){
-  
-  next();
 });
 $(document).on('click', 'button[data-page]', fetchDataApi);
 $(document).on('click', '.slide', fetchDataApi);
