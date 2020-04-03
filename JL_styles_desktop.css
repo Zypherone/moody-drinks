@@ -195,7 +195,7 @@ body {
     color: black;
   }
 
-  .searchbox {
+  /*.searchbox {
     justify-content:center;
     border-radius: 25px;
     background: whitesmoke;
@@ -204,15 +204,29 @@ body {
     width: 400px;
     height: 400px;
  
-  }
+  }*/
 
   #searchbox1 {
+    justify-content:center;
+    border-radius: 25px;
+    background: whitesmoke;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
     position: relative;
     left: 115px;
     top: 59px;
   }
 
   .searchbox2 {
+    justify-content:center;
+    border-radius: 25px;
+    background: whitesmoke;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
     position: relative;
     left: 216px;
     top: 59px;
@@ -223,6 +237,13 @@ body {
   }
 
   .searchbox3 {
+    justify-content:center;
+    border-radius: 25px;
+    background: whitesmoke;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
     position: relative;
     left: 316px;
     top: 59px;

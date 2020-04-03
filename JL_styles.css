@@ -187,13 +187,40 @@ h5 {
     padding: 20px;
     width: 400px;
     height: 400px;
- 
+    visibility: visible
   }
 
   #searchbox1 {
     position: relative;
     left: 51px;
     top: 59px;
+  }
+
+  .searchbox2 {
+    justify-content:center;
+    border-radius: 25px;
+    background: whitesmoke;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    left: 47px;
+    top: -393px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+
+  .searchbox3 {
+    position: relative;
+    left: 316px;
+    top: 59px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow-x: scroll;
   }
 
   .btnStyle {
@@ -210,6 +237,29 @@ h5 {
     margin-bottom: 20px;
   }
   
-  
+  .btnStyle3 {
+    position: relative;
+    left: 50px;
+    bottom: 62px;
+  }
+
+  .btnStyle4 {
+    position: relative;
+    left: 74px;
+    bottom: 62px;
+  }
+
+  .searchimageResults {
+    max-width: 100%;
+    border-radius: 10px;
+    background-position: left top;
+    width: 300px; /*Desktop*/
+    height: 300px; /*Desktop*/
+    margin: 30px;
+    position: relative;
+    top: -27px; /*Desktop*/
+    right: -17px; /*Desktop*/
+  }
+
 
 

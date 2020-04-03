@@ -15,9 +15,9 @@ function shuffle(array) {
   return array;
 }
 
+
 $("#name-search-btn").on("click", function(e) {
   e.preventDefault();
-
   $(".results").empty();
 
   let name = $("#name").val();
@@ -25,51 +25,27 @@ $("#name-search-btn").on("click", function(e) {
   console.log(name);
   let nameURL =
     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + name;
-
+  
   $.ajax({
     url: nameURL,
     method: "GET"
   }).then(function(response) {
     console.log(response);
-
+    
     let results = response.drinks;
 
     let resultsNew = shuffle(results);
 
-    let drinkIngredient = "";
-    let drinkMesurement = "";
-    let ingredients = "";
+    let drinkBoxEl = $("<div>").addClass("searchbox2");
 
     if (results !== null) {
       for (i = 0; i < 5; i++) {
         let drinkNameS = $("<h4>").text(resultsNew[i].strDrink);
         let drinkImageS = $("<img>").attr("src", resultsNew[i].strDrinkThumb);
-        //let drinkInstrS = $("<p>").text(resultsNew[i].strInstructions);
-        //let drinkIngredientS = $("<p>");
+
         let drinkDivS = $("<div>");
 
-        drinkImageS.addClass("searchimageResults")
-
-        // for (j = 1; j < 15; j++) {
-        //   if (resultsNew[i]["strIngredient" + j] != null) {
-        //     let drinkIngredient = resultsNew[i]["strIngredient" + j];
-        //   } else {
-        //     let drinkIngredient = "";
-        //   }
-
-        //   if (resultsNew[i]["strMeasure" + j] != null) {
-        //     let drinkMesurement = resultsNew[i]["strMeasure" + j];
-        //   } else {
-        //     let drinkMesurement = "";
-        //   }
-
-        //   if (drinkIngredient != "" || drinkMesurement != "") {
-        //     ingredients +=
-        //       "<span>" + drinkMesurement + " " + drinkIngredient + "</span>";
-        //   }
-        // }
-
-        //drinkIngredientS.text(ingredients);
+        drinkImageS.addClass("searchimageResults");
 
         let favouritesBtn = $("<button>").text("Favourites");
         let tryBtn = $("<button>").text("Try It Later");
@@ -80,16 +56,18 @@ $("#name-search-btn").on("click", function(e) {
         drinkDivS.append(
           drinkNameS,
           drinkImageS,
-          //drinkInstrS,
-          //drinkIngredientS,
           favouritesBtn,
           tryBtn
         );
-        $(".results").append(drinkDivS);
+        
+        drinkBoxEl.append(drinkDivS);
+
+        $(".results").append(drinkBoxEl);
       }
     } else {
       $(".results").html("No results returned!");
     }
+
   });
 });
 
@@ -97,6 +75,7 @@ $(".clear").on("click", function() {
   $("#name").val("");
   $(".results").empty();
 });
+
 
 $("#ingredient-search-btn").on("click", function(e) {
   e.preventDefault();
@@ -116,6 +95,7 @@ $("#ingredient-search-btn").on("click", function(e) {
     let list = $("<ul>");
     let listEl = "";
     let ingrEl = "";
+    let drinkBoxEl = $("<div>").addClass("searchbox2")
 
     for (let i = 0; i < results2.length; i++) {
       let listEl = $("<li>");
@@ -125,8 +105,8 @@ $("#ingredient-search-btn").on("click", function(e) {
       listEl.append(ingrEl);
       list.append(listEl);
     }
-
-    $(".results").append(list);
+    drinkBoxEl.append(list)
+    $(".results").append(drinkBoxEl);
 
     let choiceDisplay = $("<div>");
     $(".results2").append(choiceDisplay);
@@ -173,20 +153,10 @@ $("#ingredient-search-btn").on("click", function(e) {
             "src",
             results4New[0].strDrinkThumb
           );
+          
           let id = results4[0].idDrink;
-          let drinkInstrS = $("<p>");
-
-          // let idURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + id;
-
-          // $.ajax({
-          //     url: idURL,
-          //     method: "GET"
-          // }).then(function(response) {
-          //     console.log(response);
-
-          //     drinkInstrS.text(response.drinks.strInstructions);
-          // })
-
+          
+          
           drinkImageS.addClass("searchimageResults")
 
           let favouritesBtn = $("<button>").text("Favourites");
@@ -244,17 +214,19 @@ $("#category-search-btn").on("click", function(e) {
     let categoryEl = "";
     let cateEl = "";
 
+    let drinkBoxEl = $("<div>").addClass("searchbox2")
+
     for (i = 0; i < results3.length; i++) {
       let categoryEl = $("<li>");
       let cateEl = $("<button>").text(results3[i].strCategory);
-      //cateEl.attr("type", "button");
       cateEl.addClass("btnStyle");
       cateEl.addClass("cate-element");
       categoryEl.append(cateEl);
       category.append(categoryEl);
     }
 
-    $(".results").append(category);
+    drinkBoxEl.append(category)
+    $(".results").append(drinkBoxEl);
     let choiceDisplay = $("<div>");
     $(".results2").append(choiceDisplay);
 
@@ -310,3 +282,4 @@ $("#category-search-btn").on("click", function(e) {
     });
   });
 });
+
