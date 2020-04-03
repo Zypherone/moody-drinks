@@ -154,6 +154,12 @@ h5 {
 }
 
   /*styles for Search page*/
+  h4 {
+    font-size: 30px;
+    font-weight: bolder;
+    margin-bottom: 20px;
+  }
+
   #background {
     background-image: url("kugu2m1504735473.jpg");
   }
