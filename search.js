@@ -107,6 +107,9 @@
                 let listEl = "";
                 let ingrEl = "";
 
+              
+              
+
                 for (let i = 0; i < results2.length; i++) {
                     let listEl = $("<li>");
                     let ingrEl = $("<button>").text(results2[i].strIngredient1);
@@ -114,12 +117,15 @@
                     ingrEl.addClass("list-element");
                     listEl.append(ingrEl);
                     list.append(listEl);
+              
 
                     
                     
                 }
-                $(".results").append(list);
+        
 
+                $(".results").append(list);
+                
                 let choiceDisplay = $("<div>");
                 $(".results").append(choiceDisplay);
                 

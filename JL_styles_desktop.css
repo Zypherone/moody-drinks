@@ -212,11 +212,21 @@ body {
 
   #searchbox1 {
     position: relative;
-    left: 215px;
+    left: 115px;
     top: 59px;
   }
 
-  #searchbox2 {
+  .searchbox2 {
+    position: relative;
+    left: 216px;
+    top: 59px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow: auto;
+  }
+
+  .searchbox3 {
     position: relative;
     left: 316px;
     top: 59px;
