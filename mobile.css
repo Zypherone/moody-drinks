@@ -360,6 +360,11 @@ footer {
   scroll-snap-type: x mandatory;
 }
 
+#page-search, 
+#page-landing {
+  
+}
+
 .body-results {
 
   display: flex;
@@ -375,13 +380,15 @@ footer {
   max-height: calc(100% - 2em);
 }
 
-.body-results h2 {
+.body-results h2,
+.body-search h2 {
   font-size: 2em;
   flex-grow: 1;
   text-shadow: 1px 1px 1px #333333;
 }
 
-.body-results h3 {
+.body-results h3,
+.body-search h3 {
   border-top: 1px solid #dddddd;
   font-weight: bold;
   font-size: 1.1em;
@@ -419,4 +426,8 @@ footer {
 
 .results-shortcut {
   margin-top: 1em;
+}
+
+.body-search {
+
 }

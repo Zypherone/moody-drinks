@@ -11,11 +11,18 @@
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
     <script src="jquery-3.4.1.min.js"></script>
     <script src="handlebars.min-v4.7.3.js"></script>
+    <script src="dropdown.min.js"></script>
+    <script src="transition.min.js"></script>
     <link rel="stylesheet" href="css-reset.css" />    
+    <link rel="stylesheet" href="mobile.css" />
     <link rel="stylesheet" href="button.min.css" />
     <link rel="stylesheet" href="icon.min.css" />
     <link rel="stylesheet" href="loader.min.css" />
-    <link rel="stylesheet" href="mobile.css" />
+    <link rel="stylesheet" href="input.min.css" />
+    <link rel="stylesheet" href="dropdown.min.css" />
+    <link rel="stylesheet" href="transition.min.css" />
+    <link rel="stylesheet" href="divider.min.css" />
+    
   </head>
   <body>
     <div id="outer-container">
@@ -128,7 +135,38 @@
         </div>
         <div id="page-search" class="viewport hide collapse">
           <div class="template-search template">
-            {{search}}
+            <div class="body-search">
+              <h2>Search Parameters</h2>
+              <h3>Search by cocktail name</h3>
+              <div class="ui fluid action input">
+                <input id="search-query" type="text" name="search" placeholder="i.e. Margarita"/>
+                <div class="ui button">Search</div>
+              </div>
+              {{#each results}}
+              <!--
+              <select>
+                
+              </select>
+              -->
+
+              <div class="ui horizontal divider">or</div>
+
+              <div class="ui fluid multiple search selection dropdown">
+                <input type="hidden" name="ingredient">
+                <i class="dropdown icon"></i>
+                <div class="default text">Search by ingredient</div>
+              </div>
+
+              <div class="ui horizontal divider">or</div>
+
+              <div class="ui fluid multiple search selection dropdown">
+                <input type="hidden" name="category">
+                <i class="dropdown icon"></i>
+                <div class="default text">Search by Category</div>
+              </div>
+
+              {{/each}}
+            </div>
           </div>
         </div>
         <div id="page-list-fav" class="viewport hide collapse">
@@ -141,6 +179,7 @@
             <!-- Uses template-results structure -->
           </div>
         </div>
+        <!-- Unused History page
         <div id="page-history" class="viewport hide collapse">
           <div class="template-history template">
             {{history}}
@@ -152,10 +191,11 @@
             <p>There are no drinks to display!</p>
           </div>
         </div>
+        -->
       </section>
       <footer>
         <ul>
-          <li><button data-page="search"><span class="nav-icon">&#8981;</span><span class="nav-text">Search</span></button></li>
+          <li><button data-page="search" data-type="search"><span class="nav-icon">&#8981;</span><span class="nav-text">Search</span></button></li>
           <li><button data-page="list-try"><span class="nav-icon">&#127864;</span><span class="nav-text">Try It</span></button></li>
           <li><button data-page="list-fav"><span class="nav-icon">&#10084;</span><span class="nav-text">Favourites</span></button></li>
           <li id="back-button" class="hide-button">

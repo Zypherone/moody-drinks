@@ -106,10 +106,23 @@ function renderPage(page, dataObj) {
   else {
     var pageTemplate = $('.template-' + page).html();
   }
+
+  console.log(pageTemplate, dataObj);
+
   var template = Handlebars.compile(pageTemplate);
+
+  console.log(pageTemplate, dataObj);
   var temp = template(dataObj);
 
   $('#page-' + page).append(temp);
+
+  if (page === 'search') {
+    $('.ui.dropdown')
+    .dropdown()
+  ; 
+  }
+
+;
  
 }
 
@@ -216,7 +229,6 @@ function buildResults(resp) {
       });
     }
 
-
     promises = [];
     
     data.forEach((dataObj, index) => promises.push(sendRequest(dataObj, index)));
@@ -272,6 +284,15 @@ function fetchDataApi(e) {
 
         // Data into firebase
         saveToDB(1, listId, drinkId, drinkName, $(this));
+        return;
+      break;
+    case 'search': 
+          var nextPage = 'search';
+          var jsonObj = { results: [ { name: 'test' } ]};
+          app().hidePage();
+          app().setPage(nextPage);
+          renderPage(nextPage, jsonObj);
+          app().showPage(nextPage);
         return;
       break;
     default:
