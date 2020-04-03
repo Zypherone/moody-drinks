@@ -21,8 +21,6 @@ function app() {
 
   let activePage = $('.active');
 
-  //console.log(activePage);
-
   functionAPP = {
     hidePage: function() {
       activePage.addClass('hide').removeClass('active').delay(400).queue(function(next){
@@ -41,15 +39,10 @@ function app() {
       });   
     },
     setPage: function(value) {
-    
       appSetPage = value;
-
-    
     },
     getPage: function() {
-
       return appSetPage;
-    
     }
   }
 
@@ -57,25 +50,18 @@ function app() {
 }
 
 function saveToDB(userId, listId, drinkId, drinkName, shortcut) {
-  // A post entry.
+
+  // A prepare the drink entry.
   var drinkData = {
     list: listId,
     idDrink: drinkId,
-    strDrink: drinkName/*,
-    image: drinkImage,
-    instructions: resultstwo[0].strInstructions,
-    ingredients: [
-      {
-        name: drinkIngredient,
-        measurement: drinkMesurement
-      }
-    ],*/
+    strDrink: drinkName
   };
 
   // Get a key for a new Post.
   var newDrinkKey = firebase.database().ref().child('drinks').push().key;
 
-  // Write the new post's data simultaneously in the posts list and the user's post list.
+  // Write the new entry data simultaneously.
   var updates = {};
   updates['/drinks/' + newDrinkKey] = drinkData;  
   updates['/user/' + userId + '/' + newDrinkKey] = drinkData;
@@ -92,74 +78,13 @@ function saveToDB(userId, listId, drinkId, drinkName, shortcut) {
 
 
 function renderPage(page, dataObj) {
+     
+  var pageTemplate = $('.template-' + page).html();
+  var template = Handlebars.compile(pageTemplate);
+  var temp = template(dataObj);
 
-  //console.log($(this).attr('data-page'));
-
-  /*
-  if ($('#page-' + page) === 'undefined') {
-    return; // Show some error
-    //$('section').append($('<div id="page-' + page + '">').append($('.' + page)));
-  }
-*
-
-  if (dataObj === '') {
-    var tempName = page.replace('-', '_');
-    dataObj = { tempName : page };
-  }
-*/ 
-  var shortcut = false;
-
-  //console.log(page);
-/*
-  if( typeof page === 'object' ) {
-    thisObj = page;
-    page = $(thisObj.currentTarget).attr('data-page');
-    shortcut = $(thisObj.currentTarget).attr('data-type') ? true : false;
-
-    
-
-    if ( shortcut ) {
-
-      //console.log('shortcut yes!');
-
-      var drinkId = $(thisObj.currentTarget).attr('data-id');
-      var drinkName = $(thisObj.currentTarget).attr('data-name');
-      var listId = $(thisObj.currentTarget).attr('data-page');
-      //drinkImage = $(thisObj.currentTarget).attr('data-image');
-
-      // Data into firebase
-      saveToDB(1, listId, drinkId, drinkName, $(thisObj.currentTarget));
-
-    }
-  }
-*/
-  
-  if (typeof dataObj !== 'object') {
-
-    var objName = page.replace('-', '_');
-    /*
-    dataObj = [{
-      objName: page
-    }];
-    */
-   dataObj = [];
-    
-  }
-
-  if ( shortcut === false) {
-
-    //console.log(dataObj);
-    
-    var pageTemplate = $('.template-' + page).html();
-
-      
-    var template = Handlebars.compile(pageTemplate);
-    var temp = template(dataObj);
-
-    $('#page-' + page).append(temp);
+  $('#page-' + page).append(temp);
  
-  }
-
 }
 
 /***
@@ -183,48 +108,39 @@ function buildResults(resp) {
 
   var nextPage = app().getPage();
 
+  // Let set and prepare the json Object for handlebar.
   var jsonObj = {
     results: []
   }
 
   if (typeof resp.val === 'function') {
-    //console.log('firebase');
-    //console.log(resp.val());
-    
+       
     var data = resp.val();
         data = Object.values(data);
-//        console.log(data);
+
   }
   else { 
 
     var data = resp.drinks;
         data = _.shuffle(data);
-    //var r = Math.floor(Math.random() * data.length);
     
   }
 
-  console.log(jsonObj);
-
+  // Check to see if there is any valid data, if so, lets build it.
   if ( data !== null ) {
     
-    var returnedLength = 1;//data.length;
+    var returnedLength = data.length;
     for(i=0;i<returnedLength;i++) {
 
       var obj = new buildTemplate(data[i].idDrink, data[i].strDrink, data[i].strDrinkThumb);
       jsonObj.results.push(obj);
       
-      /*
-      console.log(data);
-      console.log(obj);
-      */
-
-      // Start of second ajax
+      // Start of second ajax call for the rest of the data.
       $.ajax({
         url: apiBaseUri + 'lookup.php?i=' + data[i].idDrink,
         method: "GET"
       }).then(function(resp) {
-        //console.log(resp);
-        //var resultstwo = response.drinks;
+        
         var r = resp.drinks[0];
         obj.image = obj.image ? obj.image : r.strDrinkThumb;
         obj.instructions = r.strInstructions;
@@ -242,7 +158,10 @@ function buildResults(resp) {
             measurement = r["strMeasure" + k];
           } 
 
+          // Check if both ingredient and measurement are not empty strings
           if (ingredient != "" || measurement != "") {            
+
+            // Push data is the handlebar object
             obj.ingredients.push({
               name: ingredient,
               measurement: measurement
@@ -250,8 +169,7 @@ function buildResults(resp) {
           }
         }
 
-        //console.log((i-1 === returnedLength), i-1, returnedLength);
-
+        // If we have completed the last callback, we can render the page.
         if (i === returnedLength) {
           renderPage(nextPage, jsonObj);
           app().showPage(nextPage);
@@ -272,14 +190,8 @@ function buildResults(resp) {
 
     $('#page-').append(temp);
     */
-
-    
-
   }
 
-  //console.log(app().getPage());
-
-  //console.log(jsonObj);
 }
 
 /**
