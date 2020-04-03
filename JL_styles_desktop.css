@@ -86,18 +86,10 @@ body {
     height: 150px; /*Desktop*/
     margin: 30px;
     position: relative;
-      top: 12px; /*Desktop*/
+      top: 38px; /*Desktop*/
       right: -35px; /*Desktop*/
   }
-  
-  h2 {
-    color : white;
-    padding: 30px;
-    position: relative;
-      right: -4px;
-      top: 4px;
-  }
-  
+ 
   .favourite {
     width: 20px;
     height: 20px;
@@ -112,8 +104,11 @@ body {
       top: 0px;
   }
 
-  .imageResults:hover div {
-    display: block;
+  .imageResults:hover .hidden {
+    display: flex;
+    left: 150px;
+    padding-left: 97px;
+    top: 0px;
   }
 
   
@@ -124,27 +119,19 @@ body {
     padding: 20px;
     width: 400px;
     height: 400px;
-    position: relative;
-    left: 196px;
-    bottom: 478px;
-    display: none;
   }
-
 
  .background {
   border-radius: 25px;
-  height: 400px;
-  width: 500px;
-  position: relative;
-    bottom: 54px;
-    right: -684px;
-  display: none;
+  height: 437px;
+  width: 543px;
+  margin-left: 83px;
+
 }
 
-
-  .hidden5 {
+  .hidden {
     position: absolute;
-    left: -144px;
+    display: none
   }
   
   #button1 {

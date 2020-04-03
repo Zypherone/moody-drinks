@@ -29,22 +29,23 @@
             {{#each results}}
            
             <div class = "imageResults">
-                  <h2>{{this.name}}</h2>
-                  <div style="background-image: url('kugu2m1504735473.jpg')" class="background hidden"></div>
-                    <div class="drinkInfobox hidden">
-                      <h3 id = "nav-icon" class="card-title">
-                        {{#each this.ingredients}}
-                        <p>
-                          <span class="results-measurement">{{this.measurement}}</span> 
-                          <span class="results-name">{{this.name}}</span>
-                        </p>
-                        {{/each}}
-                      </h3>
-                      <button type="button" id = "button1">Favourite</button>
-                      <button type="button" id = "button2">Try Later</button>
-                    </div>
-                    
-                    
+                  <h2 id="resultsH2">{{this.name}}</h2>
+                    <div class = "hidden">
+                      <div class="drinkInfobox">
+                        <h3 id = "nav-icon" class="card-title">
+                          {{#each this.ingredients}}
+                          <p>
+                            <span class="results-measurement">{{this.measurement}}</span> 
+                            <span class="results-name">{{this.name}}</span>
+                          </p>
+                          {{/each}}
+                        </h3>
+                        <button type="button" id = "button1">Favourite</button>
+                        <button type="button" id = "button2">Try Later</button>
+                        
+                      </div>
+                      <div style="background-image: url('kugu2m1504735473.jpg')" class="background"></div>
+                  </div>
             </div>
             {{/each}}
             
