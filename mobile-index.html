@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Moody Drinks</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
     <script src="jquery-3.4.1.min.js"></script>
     <script src="handlebars.min-v4.7.3.js"></script>
     <link rel="stylesheet" href="css-reset.css" />    
@@ -75,18 +78,125 @@
           </nav>
         </div>
         <div id="page-results" class="viewport hide collapse">
-          <div class="results template">
-            <h2>{{name}}</h2>
-            <div class="drinkInfobox">
+          <div class="template-results template">
+            {{#each results}}
+            <div class="body-results" style="background-image: url({{this.image}})">
+              <h2>{{this.name}}</h2>
               <h3>Ingredients</h3>
-              {{#each ingredients}}
-                <p><span class="results-measurement">{{measurement}}</span> <span class="results-name">{{name}}</span></p>
+              {{#each this.ingredients}}
+              <p>
+                <span class="results-measurement">{{this.measurement}}</span> 
+                <span class="results-name">{{this.name}}</span>
+              </p>
               {{/each}}
               <h3>Instructions/Steps</h3>
-              {{instructions}}
+              {{this.instructions}}
+              <div id="results-shortcut">
+                <button 
+                  data-type="shortcut" 
+                  data-page="list-try" 
+                  data-id="{{this.id}}" 
+                  data-name="{{this.name}}"
+                >Try Later
+              </button>
+                <button 
+                  data-type="shortcut" 
+                  data-page="list-fav" 
+                  data-id="{{this.id}}" 
+                  data-name="{{this.name}}"
+                  >Favourite
+                </button>
+              </div>
             </div>
-            <button data-type="shortcut" data-page="list-try" data-id="{{id}}">Try Later</button>
-            <button data-type="shortcut" data-page="list-fav" data-id="{{id}}">Favourite</button>
+            {{/each}}
+          </div>
+        </div>
+        <div id="page-search" class="viewport hide collapse">
+          <div class="template-search template">
+            {{search}}
+          </div>
+        </div>
+        <div id="page-list-fav" class="viewport hide collapse">
+          <div class="template-list-fav template">
+            
+            {{#each results}}
+            <div class="body-results" style="background-image: url({{this.image}})">
+              <h2>{{this.name}}</h2>
+              <h3>Ingredients</h3>
+              {{#each this.ingredients}}
+              <p>
+                <span class="results-measurement">{{this.measurement}}</span> 
+                <span class="results-name">{{this.name}}</span>
+              </p>
+              {{/each}}
+              <h3>Instructions/Steps</h3>
+              {{this.instructions}}
+              <div id="results-shortcut">
+                <button 
+                  data-type="shortcut" 
+                  data-page="list-try" 
+                  data-id="{{this.id}}" 
+                  data-name="{{this.name}}"
+                >Try Later
+              </button>
+                <button 
+                  data-type="shortcut" 
+                  data-page="list-fav" 
+                  data-id="{{this.id}}" 
+                  data-name="{{this.name}}"
+                  >Favourite
+                </button>
+              </div>
+            </div>
+            {{/each}}
+
+          </div>
+        </div>
+        <div id="page-list-try" class="viewport hide collapse">
+          <div class="template-list-try template">
+
+            {{#each results}}
+            <div class="body-results" style="background-image: url({{this.image}})">
+              <h2>{{this.name}}</h2>
+              <h3>Ingredients</h3>
+              {{#each this.ingredients}}
+              <p>
+                <span class="results-measurement">{{this.measurement}}</span> 
+                <span class="results-name">{{this.name}}</span>
+              </p>
+              {{/each}}
+              <h3>Instructions/Steps</h3>
+              {{this.instructions}}
+              <div id="results-shortcut">
+                <button 
+                  data-type="shortcut" 
+                  data-page="list-try" 
+                  data-id="{{this.id}}" 
+                  data-name="{{this.name}}"
+                >Try Later
+              </button>
+                <button 
+                  data-type="shortcut" 
+                  data-page="list-fav" 
+                  data-id="{{this.id}}" 
+                  data-name="{{this.name}}"
+                  >Favourite
+                </button>
+              </div>
+            </div>
+            {{/each}}
+
+          </div>
+        </div>
+        <div id="page-history" class="viewport hide collapse">
+          <div class="template-history template">
+            {{history}}
+          </div>
+        </div>
+        <div id="page-empty" class="viewport hide collapse">
+          <div class="template-empty template">
+            <h2>{{page_name</h2>
+            <p>There are no drinks to display!</p>
           </div>
         </div>
       </section>
@@ -95,7 +205,7 @@
           <li><button data-page="search"><span class="nav-icon">&#8981;</span><span class="nav-text">Search</span></button></li>
           <li><button data-page="list-try"><span class="nav-icon">&#127864;</span><span class="nav-text">Try It</span></button></li>
           <li><button data-page="list-fav"><span class="nav-icon">&#10084;</span><span class="nav-text">Favourites</span></button></li>
-          <li><button data-page="history"><span class="nav-icon">&#128220;</span><span class="nav-text">History</span></button></li>
+          <!--<li><button data-page="history"><span class="nav-icon">&#128220;</span><span class="nav-text">History</span></button></li>-->
         </ul>
       </footer>
     </div>
