@@ -14,29 +14,28 @@ function shuffle(array) {
   }
   return array;
 }
-
+let drinkBoxEl = $("<div>").addClass("searchbox2");
 
 $("#name-search-btn").on("click", function(e) {
   e.preventDefault();
   $(".results").empty();
+  $(".results2").empty();
 
   let name = $("#name").val();
 
   console.log(name);
   let nameURL =
     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + name;
-  
+
   $.ajax({
     url: nameURL,
     method: "GET"
   }).then(function(response) {
     console.log(response);
-    
+
     let results = response.drinks;
 
     let resultsNew = shuffle(results);
-
-    let drinkBoxEl = $("<div>").addClass("searchbox2");
 
     if (results !== null) {
       for (i = 0; i < 5; i++) {
@@ -49,17 +48,11 @@ $("#name-search-btn").on("click", function(e) {
 
         let favouritesBtn = $("<button>").text("Favourites");
         let tryBtn = $("<button>").text("Try It Later");
-
         favouritesBtn.addClass("btnStyle btnStyle3");
         tryBtn.addClass("btnStyle btnStyle4");
 
-        drinkDivS.append(
-          drinkNameS,
-          drinkImageS,
-          favouritesBtn,
-          tryBtn
-        );
-        
+        drinkDivS.append(drinkNameS, drinkImageS, favouritesBtn, tryBtn);
+
         drinkBoxEl.append(drinkDivS);
 
         $(".results").append(drinkBoxEl);
@@ -67,7 +60,6 @@ $("#name-search-btn").on("click", function(e) {
     } else {
       $(".results").html("No results returned!");
     }
-
   });
 });
 
@@ -76,11 +68,11 @@ $(".clear").on("click", function() {
   $(".results").empty();
 });
 
-
 $("#ingredient-search-btn").on("click", function(e) {
   e.preventDefault();
 
   $(".results").empty();
+  $(".results2").empty();
 
   let listURL = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list";
 
@@ -93,9 +85,7 @@ $("#ingredient-search-btn").on("click", function(e) {
     let results2 = response.drinks;
 
     let list = $("<ul>");
-    let listEl = "";
-    let ingrEl = "";
-    let drinkBoxEl = $("<div>").addClass("searchbox2")
+    let drinkBoxEl = $("<div>").addClass("searchbox2");
 
     for (let i = 0; i < results2.length; i++) {
       let listEl = $("<li>");
@@ -105,7 +95,7 @@ $("#ingredient-search-btn").on("click", function(e) {
       listEl.append(ingrEl);
       list.append(listEl);
     }
-    drinkBoxEl.append(list)
+    drinkBoxEl.append(list);
     $(".results").append(drinkBoxEl);
 
     let choiceDisplay = $("<div>");
@@ -118,7 +108,7 @@ $("#ingredient-search-btn").on("click", function(e) {
       let ingrURL =
         "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingr;
 
-      let yourChoice = $("<div>");
+      let yourChoice = $("<div>").addClass("searchbox3");
 
       $.ajax({
         url: ingrURL,
@@ -153,11 +143,10 @@ $("#ingredient-search-btn").on("click", function(e) {
             "src",
             results4New[0].strDrinkThumb
           );
-          
+
           let id = results4[0].idDrink;
-          
-          
-          drinkImageS.addClass("searchimageResults")
+
+          drinkImageS.addClass("searchimageResults");
 
           let favouritesBtn = $("<button>").text("Favourites");
           let tryBtn = $("<button>").text("Try It Later");
@@ -175,7 +164,7 @@ $("#ingredient-search-btn").on("click", function(e) {
             let drinkImageS = $("<img>").attr("src", results4[i].strDrinkThumb);
             let drinkDivS = $("<div>");
 
-            drinkImageS.addClass("searchimageResults")
+            drinkImageS.addClass("searchimageResults");
 
             let favouritesBtn = $("<button>").text("Favourites");
             let tryBtn = $("<button>").text("Try It Later");
@@ -187,7 +176,6 @@ $("#ingredient-search-btn").on("click", function(e) {
             yourChoice.append(drinkDivS);
           }
         }
-
         choiceDisplay.html(yourChoice);
       });
     });
@@ -198,6 +186,7 @@ $("#category-search-btn").on("click", function(e) {
   e.preventDefault();
 
   $(".results").empty();
+  $(".results2").empty();
 
   let categoryURL =
     "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
@@ -211,10 +200,8 @@ $("#category-search-btn").on("click", function(e) {
     let results3 = response.drinks;
 
     let category = $("<ul>");
-    let categoryEl = "";
-    let cateEl = "";
 
-    let drinkBoxEl = $("<div>").addClass("searchbox2")
+    let drinkBoxEl = $("<div>").addClass("searchbox2");
 
     for (i = 0; i < results3.length; i++) {
       let categoryEl = $("<li>");
@@ -225,19 +212,19 @@ $("#category-search-btn").on("click", function(e) {
       category.append(categoryEl);
     }
 
-    drinkBoxEl.append(category)
+    drinkBoxEl.append(category);
     $(".results").append(drinkBoxEl);
     let choiceDisplay = $("<div>");
     $(".results2").append(choiceDisplay);
 
     $(".cate-element").on("click", function() {
       let cate = $(this).text();
-      console.log(cate);
+   
 
       let cateURL =
         "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=" + cate;
 
-      let yourChoice = $("<div>");
+      let yourChoice = $("<div>").addClass("searchbox3");
 
       $.ajax({
         url: cateURL,
@@ -265,7 +252,7 @@ $("#category-search-btn").on("click", function(e) {
             let drinkImageS = $("<img>").attr("src", results5[i].strDrinkThumb);
             let drinkDivS = $("<div>");
 
-            drinkImageS.addClass("searchimageResults")
+            drinkImageS.addClass("searchimageResults");
 
             let favouritesBtn = $("<button>").text("Favourites");
             let tryBtn = $("<button>").text("Try It Later");
@@ -276,10 +263,8 @@ $("#category-search-btn").on("click", function(e) {
             yourChoice.append(drinkDivS);
           }
         }
-
         choiceDisplay.html(yourChoice);
       });
     });
   });
 });
-
