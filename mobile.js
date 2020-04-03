@@ -17,6 +17,8 @@ var functionAPP,
     appSetPage = '',
     apiBaseUri = "https://www.thecocktaildb.com/api/json/v1/1/";;
 
+
+// Prepare the basic page setup
 function app() {
 
   let activePage = $('.engaged');
@@ -56,6 +58,16 @@ function app() {
   return functionAPP;
 }
 
+/**
+ * 
+ * Save to Firebase for favourites and try it.
+ * 
+ * @param {*} userId 
+ * @param {*} listId 
+ * @param {*} drinkId 
+ * @param {*} drinkName 
+ * @param {*} shortcut 
+ */
 function saveToDB(userId, listId, drinkId, drinkName, shortcut) {
 
   // A prepare the drink entry.
@@ -240,16 +252,18 @@ function fetchDataApi(e) {
     page: $(this).attr('data-page')
   }
 
+  // Correctly configure the request Query URI
   switch (type.api) {
     case 'drink': 
         queryUri = apiBaseUri + 'filter.php?i=' + type.drink;
       break;
     case 'mocktails':
-      queryUri = apiBaseUri + 'filter.php?i=a=Non_Alcoholic';    
+      queryUri = apiBaseUri + 'filter.php?a=Non_Alcoholic';    
       break;
     case 'random':
         queryUri = apiBaseUri + 'random.php';
       break;
+    // Should it be a shortcut, just save it and return
     case 'shortcut':
         var drinkId = $(this).attr('data-id');
         var drinkName = $(this).attr('data-name');
@@ -282,6 +296,7 @@ function fetchDataApi(e) {
 
     app().setPage(nextPage);
 
+    // Fetch data from firebase (for fav and try it)
     if (uri === 'firebase') {
 
       firebase.database()
@@ -290,6 +305,7 @@ function fetchDataApi(e) {
         .then(buildResults);
 
     } 
+    // Fetch data from cocktail API
     else {
 
       $.ajax({
