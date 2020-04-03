@@ -73,8 +73,6 @@ body {
   }
   
   /*styles for Results page*/
-
-
   body {
     background-color: white;
   }
@@ -180,6 +178,70 @@ body {
       left: 109px;
       top: 308px;
   }
+
+  /*styles for Search page*/
+  #background {
+    background-image: url("kugu2m1504735473.jpg");
+  }
+
+  label {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .container {
+    display: flex;
+  }
+
+  .searchText {
+    color: black;
+  }
+
+  .searchbox {
+    justify-content:center;
+    border-radius: 25px;
+    background: whitesmoke;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
+ 
+  }
+
+  #searchbox1 {
+    position: relative;
+    left: 215px;
+    top: 59px;
+  }
+
+  #searchbox2 {
+    position: relative;
+    left: 316px;
+    top: 59px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow: auto;
+  }
+
+  .btnStyle {
+    background-color: pink;
+    border-radius: 25px;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px ;
+    margin-bottom: 20px;
+  }
+
+
+  
   
   
   

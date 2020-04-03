@@ -1,40 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        <title>Moody Drinks</title>
-    </head>
-    <body>
-        <div>
-            <h2>Search Parameters</h2>
-            <div class="name">
-                <label>Cocktail Name</label>
-                <input id="name" placeholder="Margarita">
-            </div>
-            <div class="button-container">
-                <button id="name-search-btn">Search</button>
-                <button class="clear">Clear</button>
-            </div>
-            <div class="ingredient">
-                <label>Choose an Ingredient</label>
-            </div>
-            <div class="button-container">
-                <button id="ingredient-search-btn">Search</button>
-            </div>
-            <div class="category">
-                <label>Choose a Category</label>
-            </div>
-            <div class="button-container">
-                <button id="category-search-btn">Search</button>
-            </div>
-        </div>
-        <div class="results"></div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript">
-
         function shuffle(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
             // While there remain elements to shuffle...
@@ -144,10 +107,10 @@
                 let listEl = "";
                 let ingrEl = "";
 
-                for (i = 0; i < results2.length; i++) {
+                for (let i = 0; i < results2.length; i++) {
                     let listEl = $("<li>");
-                    let ingrEl = $("<input>").attr("value", results2[i].strIngredient1);
-                    ingrEl.attr("type", "button");
+                    let ingrEl = $("<button>").text(results2[i].strIngredient1);
+                    ingrEl.addClass("btnStyle");
                     ingrEl.addClass("list-element");
                     listEl.append(ingrEl);
                     list.append(listEl);
@@ -163,7 +126,7 @@
 
                 $(".list-element").on("click", function() {
                     
-                    let ingr = $(this).attr("value");
+                    let ingr = $(this).text();
                     console.log(ingr);
 
                     let ingrURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingr;
@@ -281,8 +244,9 @@
 
                 for (i = 0; i < results3.length; i++) {
                     let categoryEl = $("<li>");
-                    let cateEl = $("<input>").attr("value", results3[i].strCategory);
-                    cateEl.attr("type", "button");
+                    let cateEl = $("<button>").text(results3[i].strCategory);
+                    //cateEl.attr("type", "button");
+                    cateEl.addClass("btnStyle");
                     cateEl.addClass("cate-element");
                     categoryEl.append(cateEl);
                     category.append(categoryEl);
@@ -299,7 +263,7 @@
 
                 $(".cate-element").on("click", function() {
                     
-                    let cate = $(this).attr("value");
+                    let cate = $(this).text();
                     console.log(cate);
 
                     let cateURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=" + cate;
@@ -377,6 +341,3 @@
         
 
         
-        </script>
-    </body>
-</html>
