@@ -19,6 +19,7 @@ let drinkBoxEl = $("<div>").addClass("searchbox2");
 $("#name-search-btn").on("click", function(e) {
   e.preventDefault();
   $(".results").empty();
+  $(".results2").empty();
 
   let name = $("#name").val();
 
@@ -218,7 +219,7 @@ $("#category-search-btn").on("click", function(e) {
 
     $(".cate-element").on("click", function() {
       let cate = $(this).text();
-      console.log(cate);
+   
 
       let cateURL =
         "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=" + cate;
