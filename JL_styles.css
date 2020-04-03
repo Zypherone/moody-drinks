@@ -155,9 +155,11 @@ h5 {
 
   /*styles for Search page*/
   h4 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bolder;
     margin-bottom: 20px;
+    position: relative;
+    left: 51px;
   }
 
   #background {
@@ -214,9 +216,16 @@ h5 {
   }
 
   .searchbox3 {
+    justify-content:center;
+    border-radius: 25px;
+    background: whitesmoke;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
     position: relative;
-    left: 316px;
-    top: 59px;
+    left: 47px;
+    top: -838px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -238,27 +247,40 @@ h5 {
   }
   
   .btnStyle3 {
+    padding: 10px 20px;
     position: relative;
-    left: 50px;
-    bottom: 62px;
+      bottom: 62px;
+      left: 16px;
   }
 
   .btnStyle4 {
+    padding: 10px 20px;
     position: relative;
-    left: 74px;
-    bottom: 62px;
+      bottom: 62px;  
+      left: 27px;
+      
+  }
+
+  .list-element {
+    position: relative;
+    left: -44px;
+  }
+
+  .cate-element {
+    position: relative;
+    left: -44px;
   }
 
   .searchimageResults {
     max-width: 100%;
     border-radius: 10px;
     background-position: left top;
-    width: 300px; /*Desktop*/
-    height: 300px; /*Desktop*/
+    width: 250px; 
+    height: 250px; 
     margin: 30px;
     position: relative;
-    top: -27px; /*Desktop*/
-    right: -17px; /*Desktop*/
+    top: -27px;
+    right: 12px; 
   }
 
 
