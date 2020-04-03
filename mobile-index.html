@@ -12,6 +12,9 @@
     <script src="jquery-3.4.1.min.js"></script>
     <script src="handlebars.min-v4.7.3.js"></script>
     <link rel="stylesheet" href="css-reset.css" />    
+    <link rel="stylesheet" href="button.min.css" />
+    <link rel="stylesheet" href="icon.min.css" />
+    <link rel="stylesheet" href="loader.min.css" />
     <link rel="stylesheet" href="mobile.css" />
   </head>
   <body>
@@ -33,7 +36,12 @@
 
       </header>
       <section>
-        <div id="page-landing" class="viewport active">
+        <div class="ui segment">
+          <div class="ui active inverted">
+            <div class="ui medium text loader">Loading</div>
+          </div>
+        </div>
+        <div id="page-landing" class="viewport engaged">
           <div class="slider" id="slider">
             <div class="holder">
               <div class="slide" id="slide-0" data-type="drink" data-drink="vodka" data-page="results">
@@ -82,30 +90,35 @@
             {{#each results}}
             <div class="body-results" style="background-image: url({{this.image}})">
               <h2>{{this.name}}</h2>
-              <h3>Ingredients</h3>
-              {{#each this.ingredients}}
-              <p>
-                <span class="results-measurement">{{this.measurement}}</span> 
-                <span class="results-name">{{this.name}}</span>
-              </p>
-              {{/each}}
-              <h3>Instructions/Steps</h3>
-              {{this.instructions}}
-              <div id="results-shortcut">
-                <button 
-                  data-type="shortcut" 
-                  data-page="list-try" 
-                  data-id="{{this.id}}" 
-                  data-name="{{this.name}}"
-                >Try Later
-              </button>
-                <button 
-                  data-type="shortcut" 
-                  data-page="list-fav" 
-                  data-id="{{this.id}}" 
-                  data-name="{{this.name}}"
-                  >Favourite
-                </button>
+              <div class="results-info-box">
+                <h3>Ingredients</h3>
+                {{#each this.ingredients}}
+                <p>
+                  <span class="results-measurement">{{this.measurement}}</span> 
+                  <span class="results-name">{{this.name}}</span>
+                </p>
+                {{/each}}
+                <h3>Instructions/Steps</h3>
+                {{this.instructions}}
+                <div id="results-shortcut">
+                    <div class="ui large buttons">
+                    <button class="ui teal button"
+                      data-type="shortcut" 
+                      data-page="list-try" 
+                      data-id="{{this.id}}" 
+                      data-name="{{this.name}}"
+                    >Try Later
+                  </button>
+                  <div class="or"></div>
+                    <button class="ui pink button" 
+                      data-type="shortcut" 
+                      data-page="list-fav" 
+                      data-id="{{this.id}}" 
+                      data-name="{{this.name}}"
+                      >Favourite
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             {{/each}}
@@ -118,74 +131,12 @@
         </div>
         <div id="page-list-fav" class="viewport hide collapse">
           <div class="template-list-fav template">
-            
-            {{#each results}}
-            <div class="body-results" style="background-image: url({{this.image}})">
-              <h2>{{this.name}}</h2>
-              <h3>Ingredients</h3>
-              {{#each this.ingredients}}
-              <p>
-                <span class="results-measurement">{{this.measurement}}</span> 
-                <span class="results-name">{{this.name}}</span>
-              </p>
-              {{/each}}
-              <h3>Instructions/Steps</h3>
-              {{this.instructions}}
-              <div id="results-shortcut">
-                <button 
-                  data-type="shortcut" 
-                  data-page="list-try" 
-                  data-id="{{this.id}}" 
-                  data-name="{{this.name}}"
-                >Try Later
-              </button>
-                <button 
-                  data-type="shortcut" 
-                  data-page="list-fav" 
-                  data-id="{{this.id}}" 
-                  data-name="{{this.name}}"
-                  >Favourite
-                </button>
-              </div>
-            </div>
-            {{/each}}
-
+            <!-- Uses template-results structure -->
           </div>
         </div>
         <div id="page-list-try" class="viewport hide collapse">
           <div class="template-list-try template">
-
-            {{#each results}}
-            <div class="body-results" style="background-image: url({{this.image}})">
-              <h2>{{this.name}}</h2>
-              <h3>Ingredients</h3>
-              {{#each this.ingredients}}
-              <p>
-                <span class="results-measurement">{{this.measurement}}</span> 
-                <span class="results-name">{{this.name}}</span>
-              </p>
-              {{/each}}
-              <h3>Instructions/Steps</h3>
-              {{this.instructions}}
-              <div id="results-shortcut">
-                <button 
-                  data-type="shortcut" 
-                  data-page="list-try" 
-                  data-id="{{this.id}}" 
-                  data-name="{{this.name}}"
-                >Try Later
-              </button>
-                <button 
-                  data-type="shortcut" 
-                  data-page="list-fav" 
-                  data-id="{{this.id}}" 
-                  data-name="{{this.name}}"
-                  >Favourite
-                </button>
-              </div>
-            </div>
-            {{/each}}
-
+            <!-- Uses template-results structure -->
           </div>
         </div>
         <div id="page-history" class="viewport hide collapse">
@@ -205,6 +156,12 @@
           <li><button data-page="search"><span class="nav-icon">&#8981;</span><span class="nav-text">Search</span></button></li>
           <li><button data-page="list-try"><span class="nav-icon">&#127864;</span><span class="nav-text">Try It</span></button></li>
           <li><button data-page="list-fav"><span class="nav-icon">&#10084;</span><span class="nav-text">Favourites</span></button></li>
+          <li id="back-button" class="hide-button">
+            <button>
+              <span class="nav-icon"><i class="chevron left icon"></i></span>
+              <span class="nav-text">Back</span>
+            </button>
+          </li>
           <!--<li><button data-page="history"><span class="nav-icon">&#128220;</span><span class="nav-text">History</span></button></li>-->
         </ul>
       </footer>

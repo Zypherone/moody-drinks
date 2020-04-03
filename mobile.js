@@ -19,11 +19,12 @@ var functionAPP,
 
 function app() {
 
-  let activePage = $('.active');
+  let activePage = $('.engaged');
 
   functionAPP = {
     hidePage: function() {
-      activePage.addClass('hide').removeClass('active').delay(400).queue(function(next){
+      $('.ui.active').addClass('dimmer');
+      activePage.addClass('hide').removeClass('engaged').delay(700).queue(function(next){
         // Store template into a var to append for later use
         var tpl = $(this).children()[0];
         $(this).empty();
@@ -34,7 +35,11 @@ function app() {
     },
     showPage: function(page) {
       $('#page-' + page).removeClass('collapse').delay(1).queue(function(next){
-        $(this).removeClass('hide').addClass('active');
+        $(this).removeClass('hide').addClass('engaged');
+        $('.ui.active').removeClass('dimmer');
+        if (activePage.attr('id') !== 'page-landing') {
+          $('#back-button').removeClass('hide-button');
+        }
         next();
       });   
     },
@@ -79,7 +84,14 @@ function saveToDB(userId, listId, drinkId, drinkName, shortcut) {
 
 function renderPage(page, dataObj) {
      
-  var pageTemplate = $('.template-' + page).html();
+  if (page === 'list-try'
+    || page === 'list-fav') {
+    
+    var pageTemplate = $('.template-results').html();
+  }
+  else {
+    var pageTemplate = $('.template-' + page).html();
+  }
   var template = Handlebars.compile(pageTemplate);
   var temp = template(dataObj);
 
@@ -277,5 +289,13 @@ function fetchDataApi(e) {
 
 
 // Lets set all the click events
+$('#back-button').on('click', function() {
+  app().hidePage();
+  app().showPage('landing');
+  
+}).delay(700).queue(function(next){
+  
+  next();
+});
 $(document).on('click', 'button[data-page]', fetchDataApi);
 $(document).on('click', '.slide', fetchDataApi);

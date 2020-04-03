@@ -74,7 +74,7 @@ section {
   flex-grow: 2;
   background: white;
   border-radius: 1em 0 0 1em;
-  margin: 0 0 4em 1em;
+  margin: 0 0 60px 1em;
   padding: 1em;
   border: 1px solid #eee;
 }
@@ -82,7 +82,8 @@ footer {
   background: whitesmoke;
   /*box-shadow: 0 0 5px #333;*/
   /*height: 100px*/
-  padding: .7em 0;
+  /*padding: .7em 0;*/
+  height: 60px;
   z-index: 5;
 }
 
@@ -98,6 +99,10 @@ footer ul {
 
 footer li {
   flex-grow: 1;
+}
+
+.hide-button {
+  display: none;
 }
 
 footer button,
@@ -317,16 +322,22 @@ footer {
 
 
 .viewport {
+  display: flex;
   height: 100%;
   min-height: 100%;
-  transition: opacity .4s linear;
+  position: relative;
+  transition: opacity .4s linear, left .7s linear;
+  
 }
 
-.active {
+.engaged {
+  left: 0;
   opacity: 1;
+  
 }
 
 .hide {
+  left: 100%;
   opacity: 0;;
 }
 
@@ -336,4 +347,23 @@ footer {
 
 .template {
   display: none;
+}
+
+
+#page-list-try,
+#page-list-fav {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.body-results {
+  border-radius: 1em;
+  padding: 1em;
+  color: #ffff;
+  scroll-snap-align: start;
+  text-shadow: 1px 1px 1px #333333;
+}
+
+.results-info-box {
+  
 }
