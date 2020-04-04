@@ -42,7 +42,7 @@ header {
 }
 
 header {
-  display: none;
+  display: block;
 }
 
 h1 {
@@ -355,7 +355,8 @@ footer {
 
 #page-results,
 #page-list-try,
-#page-list-fav {
+#page-list-fav,
+#page-search-results {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
 }
@@ -429,5 +430,13 @@ footer {
 }
 
 .body-search {
+
+}
+
+@media only screen and (max-width: 500px) {
+
+  .body-results {
+    width: 25% !important;
+  }
 
 }

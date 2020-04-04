@@ -99,7 +99,8 @@ function saveToDB(userId, listId, drinkId, drinkName, shortcut) {
 function renderPage(page, dataObj) {
      
   if (page === 'list-try'
-    || page === 'list-fav') {
+    || page === 'list-fav'
+    || page === 'search-results') {
     
     var pageTemplate = $('.template-results').html();
   }
@@ -107,11 +108,11 @@ function renderPage(page, dataObj) {
     var pageTemplate = $('.template-' + page).html();
   }
 
-  console.log(pageTemplate, dataObj);
+  //console.log(pageTemplate, dataObj);
 
   var template = Handlebars.compile(pageTemplate);
 
-  console.log(pageTemplate, dataObj);
+  //console.log(pageTemplate, dataObj);
   var temp = template(dataObj);
 
   $('#page-' + page).append(temp);
@@ -141,6 +142,89 @@ function buildTemplate(drinkId, drinkName, drinkImage, drinkInstructions) {
   }
 }
 
+/**
+ * Build search results page
+ */
+
+function buildSearchResults() {
+
+  app().hidePage();
+
+  var nextPage = app().getPage();
+  var complete = false;
+
+  // Let set and prepare the json Object for handlebar.
+  var jsonObj = {
+    results: [{
+      categories: [],
+      ingredients: []
+    }]
+  }
+
+  var counter = 0;
+
+  var data = [1];
+
+  function sendRequest(dataObj, index) {
+    return new Promise((resolve, reject) => {
+
+      //var obj = new buildSearchResults();
+      //jsonObj.results.push(obj);
+      
+      $.ajax({
+        url: apiBaseUri + 'list.php?c=list',
+        method: "GET"
+      })
+      .then(function(resp) {
+        counter++;
+  
+        var r = resp.drinks;
+
+        console.log(r);
+        
+        r.forEach(function(valueData) {
+          jsonObj.results[0].categories.push({ value: valueData.strCategory });
+        });
+
+      })/*
+      $.ajax({
+        url: apiBaseUri + 'list.php?i=list',
+        method: "GET"
+      })
+      .then(function(resp) {
+        counter++;
+  
+        var r = resp.drinks;
+
+        console.log(r);
+        
+        r.forEach(function(valueData) {
+          jsonObj.results[0].ingredients.push({ value: valueData.strIngredient1 });
+        });
+
+      })*/
+      .then(function() {
+        if (counter == data.length) {
+          console.log(jsonObj);
+          renderPage(nextPage, jsonObj);
+          app().showPage(nextPage);
+        }
+      });
+
+    });
+  }
+
+  promises = [];
+  
+  data.forEach((dataObj, index) => promises.push(sendRequest(dataObj, index)));
+
+}
+
+/**
+ * Build Results page
+ * @param {*} resp 
+ */
+
 function buildResults(resp) {
 
   app().hidePage();
@@ -169,8 +253,10 @@ function buildResults(resp) {
     
   }
 
+  console.log(data);
+
   // Check to see if there is any valid data, if so, lets build it.
-  if ( data !== null ) {
+  if ( data.length > 0 ) {
 
     var counter = 0;
 
@@ -235,16 +321,24 @@ function buildResults(resp) {
 
   }
   else {
+    
+//    console.log('test');
+    
+    //renderPage(nextPage, 'error');
 
-    /*
+    //renderPage(nextPage, jsonObj);
     var tpl = $('.template-empty').html();
+
+    //console.log(nextPage);
+    //console.log('#page-' + nextPage);
     // show no display result
-    var template = Handlebars.compile(tpl);
+    //var template = Handlebars.compile(tpl);
+    //var temp = template({ page_name: 'blah' });
 
-    var temp = template({page_name: 'blah'});
-
-    $('#page-').append(temp);
-    */
+    //console.log(temp);
+    $('#page-' + nextPage).append(tpl);
+    
+    app().showPage(nextPage);
   }
 
 }
@@ -256,6 +350,9 @@ function buildResults(resp) {
 
 function fetchDataApi(e) {
 
+  //console.log($(this).hasClass('menu'));
+
+
   let queryUri;
 
   let type = {
@@ -264,9 +361,17 @@ function fetchDataApi(e) {
     page: $(this).attr('data-page')
   }
 
+  if ( $(this).hasClass('menu') ) {
+    //console.log($(this).children( ".selected").html());
+    type.drink = $(this).children( ".selected").html();
+    type.api = 'search-results';
+    type.page = 'search-results';
+  }
+
   // Correctly configure the request Query URI
   switch (type.api) {
     case 'drink': 
+    case 'search-results':
         queryUri = apiBaseUri + 'filter.php?i=' + type.drink;
       break;
     case 'mocktails':
@@ -289,10 +394,11 @@ function fetchDataApi(e) {
     case 'search': 
           var nextPage = 'search';
           var jsonObj = { results: [ { name: 'test' } ]};
-          app().hidePage();
+          
           app().setPage(nextPage);
-          renderPage(nextPage, jsonObj);
-          app().showPage(nextPage);
+
+          buildSearchResults();
+
         return;
       break;
     default:

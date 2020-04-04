@@ -138,10 +138,12 @@
             <div class="body-search">
               <h2>Search Parameters</h2>
               <h3>Search by cocktail name</h3>
+              <!--
               <div class="ui fluid action input">
                 <input id="search-query" type="text" name="search" placeholder="i.e. Margarita"/>
                 <div class="ui button">Search</div>
               </div>
+            -->
               {{#each results}}
               <!--
               <select>
@@ -150,23 +152,38 @@
               -->
 
               <div class="ui horizontal divider">or</div>
+              <!--
 
-              <div class="ui fluid multiple search selection dropdown">
-                <input type="hidden" name="ingredient">
-                <i class="dropdown icon"></i>
-                <div class="default text">Search by ingredient</div>
-              </div>
+              <select class="ui fluid search dropdown" name="search-ingredient">
+                <option value="">Seach by Ingredient</option>
+                {{#each this.ingredients}}
+                <option>{{this.value}}</option>
+                {{/each}}
+              </select>
 
               <div class="ui horizontal divider">or</div>
-
+            -->
+              <select class="ui fluid search dropdown" name="search-category">
+                <option value="0">Seach by Category</option>
+                {{#each this.categories}}
+                <option value="{{this.value}}">{{this.value}}</option>
+                {{/each}}
+              </select>
+              
+              <!--
               <div class="ui fluid multiple search selection dropdown">
                 <input type="hidden" name="category">
                 <i class="dropdown icon"></i>
                 <div class="default text">Search by Category</div>
               </div>
-
+              -->
               {{/each}}
             </div>
+          </div>
+        </div>
+        <div id="page-search-results" class="viewport hide collapse">
+          <div class="template-search-results template">
+            <!-- Uses template-results structure -->
           </div>
         </div>
         <div id="page-list-fav" class="viewport hide collapse">
@@ -184,26 +201,27 @@
           <div class="template-history template">
             {{history}}
           </div>
-        </div>
+        </div>-->
         <div id="page-empty" class="viewport hide collapse">
           <div class="template-empty template">
-            <h2>{{page_name</h2>
-            <p>There are no drinks to display!</p>
+            <div class="body-search">
+              <h2>Oops! Sorry...</h2>
+              <h3>There are no results available for your request, please try again.</h3>
+            </div>
           </div>
         </div>
-        -->
       </section>
       <footer>
         <ul>
-          <li><button data-page="search" data-type="search"><span class="nav-icon">&#8981;</span><span class="nav-text">Search</span></button></li>
-          <li><button data-page="list-try"><span class="nav-icon">&#127864;</span><span class="nav-text">Try It</span></button></li>
-          <li><button data-page="list-fav"><span class="nav-icon">&#10084;</span><span class="nav-text">Favourites</span></button></li>
           <li id="back-button" class="hide-button">
             <button>
               <span class="nav-icon"><i class="chevron left icon"></i></span>
               <span class="nav-text">Back</span>
             </button>
           </li>
+          <li><button data-page="search" data-type="search"><span class="nav-icon">&#8981;</span><span class="nav-text">Search</span></button></li>
+          <li><button data-page="list-try"><span class="nav-icon">&#127864;</span><span class="nav-text">Try It</span></button></li>
+          <li><button data-page="list-fav"><span class="nav-icon">&#10084;</span><span class="nav-text">Favourites</span></button></li>
           <!--<li><button data-page="history"><span class="nav-icon">&#128220;</span><span class="nav-text">History</span></button></li>-->
         </ul>
       </footer>
