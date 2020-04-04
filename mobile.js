@@ -45,7 +45,8 @@ function app() {
           $('#back-button').removeClass('hide-button');
         }
 
-        if (activePage.attr('id') === 'page-landing') {
+        if ($(this).attr('id') === 'page-landing') {
+          
           $('#back-button').addClass('hide-button');
         }
         next();
