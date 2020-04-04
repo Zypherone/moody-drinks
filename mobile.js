@@ -44,6 +44,10 @@ function app() {
         if (activePage.attr('id') !== 'page-landing') {
           $('#back-button').removeClass('hide-button');
         }
+
+        if (activePage.attr('id') === 'page-landing') {
+          $('#back-button').addClass('hide-button');
+        }
         next();
       });   
     },
