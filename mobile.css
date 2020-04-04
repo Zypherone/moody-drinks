@@ -187,6 +187,7 @@ footer li:hover button {
 .mood-text {
   color: #ffffff;
   font-size: 2em;
+  padding: 1em;
   text-shadow: 1px 1px 1px #333;
 }
 
