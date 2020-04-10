@@ -70,10 +70,6 @@ header p {
   padding-left: 77px;
 }
 
-nav {
-  display: none;
-}
-
 section {
   flex-grow: 2;
   background: white;
@@ -140,9 +136,32 @@ footer li:hover button {
 }
 
 @media only screen and (max-width: 500px) {
-  nav {
-    display: none;
-  }
+
+  .body-results h2:before {
+    content: ' ';
+    display: block;
+    height: 100px;
+    width: 100px;
+    background-image: var(--thumb);
+    background-size: contain;
+    background-position: center;
+    border-radius: .5em;
+    /*
+    position: absolute;
+    right: -0.5em;
+    right: calc(-100px + 1em);
+    /* top: 98%; */
+    z-index: 3;
+    bottom: -2em;
+    box-shadow: 2px 2px 3px rgba(51, 51, 51, .5);
+    float: right;
+
+    box-shadow: 0 2px 1px rgba(51, 51, 51, .5);
+    float: right;
+    /* border: 1px solid #ececec; */
+    border-radius: .5em 0 0 .5em;
+}
+
 }
 
 
@@ -394,30 +413,7 @@ footer {
     margin-right: -1em;
     margin-right: -0.5em;
   }
-  .body-results h2:before {
-    content: ' ';
-    display: block;
-    height: 100px;
-    width: 100px;
-    background-image: var(--thumb);
-    background-size: contain;
-    background-position: center;
-    border-radius: .5em;
-    /*
-    position: absolute;
-    right: -0.5em;
-    right: calc(-100px + 1em);
-    /* top: 98%; */
-    z-index: 3;
-    bottom: -2em;
-    box-shadow: 2px 2px 3px rgba(51, 51, 51, .5);
-    float: right;
 
-    box-shadow: 0 2px 1px rgba(51, 51, 51, .5);
-    float: right;
-    /* border: 1px solid #ececec; */
-    border-radius: .5em 0 0 .5em;
-}
 
 
 .body-drink-name {

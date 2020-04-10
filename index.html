@@ -33,15 +33,6 @@
         <h1>Welcome back Janice!</h1>
         <p>How do you feel today? Ready to get a Moody Drink?</p>
 
-        <nav>
-          <ul>
-            <li>Search</li>
-            <li>Try It</li>
-            <li>Favourites</li>
-            <li>History</li>
-          </ul>
-        </nav>
-
       </header>
       <section>
         <div class="ui segment">
@@ -85,12 +76,19 @@
             </div>
           </div>
           <nav class="slider-nav">
+            <!--
             <a href="#slide-0">😀</a>
             <a href="#slide-1">😔</a> 
             <a href="#slide-2">😆</a> 
             <a href="#slide-3">🙂</a> 
             <a href="#slide-4">❤</a>
-            <a href="#slide-4">❤</a>
+            -->
+            <a href="#slide-0"><span class="nav-icon">&#127867;</span></a>
+            <a href="#slide-1"><span class="nav-icon">&#128531;</span></a> 
+            <a href="#slide-2"><span class="nav-icon">&#127881;</span></a> 
+            <a href="#slide-3"><span class="nav-icon">&#128522;</span></a> 
+            <a href="#slide-4"><span class="nav-icon">&#128519;</span></a>
+            <a href="#slide-5"><span class="nav-icon">&#128163;</span></a>
           </nav>
         </div>
         <div id="page-results" class="viewport hide collapse">
@@ -151,12 +149,6 @@
               </div>
             
               {{#each results}}
-              <!--
-              <select>
-                
-              </select>
-              -->
-
               <div class="ui horizontal divider">or</div>
               <!--
 
@@ -175,14 +167,6 @@
                 <option value="{{this.value}}">{{this.value}}</option>
                 {{/each}}
               </select>
-              
-              <!--
-              <div class="ui fluid multiple search selection dropdown">
-                <input type="hidden" name="category">
-                <i class="dropdown icon"></i>
-                <div class="default text">Search by Category</div>
-              </div>
-              -->
               {{/each}}
             </div>
           </div>
@@ -202,12 +186,6 @@
             <!-- Uses template-results structure -->
           </div>
         </div>
-        <!-- Unused History page
-        <div id="page-history" class="viewport hide collapse">
-          <div class="template-history template">
-            {{history}}
-          </div>
-        </div>-->
         <div id="page-empty" class="viewport hide collapse">
           <div class="template-empty template">
             <div class="body-search">
@@ -218,18 +196,24 @@
         </div>
       </section>
       <footer>
-        <ul>
-          <li id="back-button" class="hide-button">
-            <button>
-              <span class="nav-icon"><i class="chevron left icon"></i></span>
-              <span class="nav-text">Back</span>
-            </button>
-          </li>
-          <li><button data-page="search" data-type="search"><span class="nav-icon">&#8981;</span><span class="nav-text">Search</span></button></li>
-          <li><button data-page="list-try"><span class="nav-icon">&#127864;</span><span class="nav-text">Try It</span></button></li>
-          <li><button data-page="list-fav"><span class="nav-icon">&#10084;</span><span class="nav-text">Favourites</span></button></li>
-          <!--<li><button data-page="history"><span class="nav-icon">&#128220;</span><span class="nav-text">History</span></button></li>-->
-        </ul>
+        <nav>
+          <ul>
+            <li id="back-button" class="hide-button">
+              <button>
+                <span class="nav-icon"><i class="chevron left icon"></i></span>
+                <span class="nav-text">Back</span>
+              </button>
+            </li>
+            <li>
+              <button data-page="search" data-type="search">
+                <span class="nav-icon"><i class="search icon"></i></span>
+                <span class="nav-text">Search</span>
+              </button>
+            </li>
+            <li><button data-page="list-try"><span class="nav-icon">&#127864;</span><span class="nav-text">Try It</span></button></li>
+            <li><button data-page="list-fav"><span class="nav-icon">&#10084;</span><span class="nav-text">Favourites</span></button></li>
+          </ul>
+        </nav>
       </footer>
     </div>
     <script src="app.js"></script>
