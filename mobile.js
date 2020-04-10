@@ -15,7 +15,9 @@ firebase.initializeApp(firebaseConfig);
 
 var functionAPP, 
     appSetPage = '',
-    apiBaseUri = "https://www.thecocktaildb.com/api/json/v1/1/";;
+    apiBaseUri = "https://www.thecocktaildb.com/api/json/v1/1/";
+
+var dropdownDOM = [];
 
 
 // Prepare the basic page setup
@@ -26,9 +28,16 @@ function app() {
   functionAPP = {
     hidePage: function() {
       $('.ui.active').addClass('dimmer');
-      activePage.addClass('hide').removeClass('engaged').delay(700).queue(function(next){
+      activePage.addClass('hide').removeClass('engaged').delay(700 ).queue(function(next){
         // Store template into a var to append for later use
         if (activePage.attr('id') !== 'page-landing') {
+          dropdownDOM.forEach(function(dom) {
+            //dom.destroy();
+            console.log('a,', dom);
+
+            //dom;
+          })
+          dropdownDOM = [];
           var tpl = $(this).children()[0];
           $(this).empty();
           $(this).append($(tpl));
@@ -105,6 +114,7 @@ function renderPage(page, dataObj) {
      
   if (page === 'list-try'
     || page === 'list-fav'
+    || page === 'search-query'
     || page === 'search-results') {
     
     var pageTemplate = $('.template-results').html();
@@ -123,9 +133,9 @@ function renderPage(page, dataObj) {
   $('#page-' + page).append(temp);
 
   if (page === 'search') {
-    $('.ui.dropdown')
-    .dropdown()
-  ; 
+
+    //console.log('test');
+    dropdownDOM.push( $('.ui.dropdown.apply').dropdown() ); 
   }
 
 ;
@@ -136,9 +146,10 @@ function renderPage(page, dataObj) {
  * A function to build th results page for mood, search, try it and fav.
  */
 
-function buildTemplate(drinkId, drinkName, drinkImage, drinkInstructions) {
+function buildTemplate(drinkId, drinkName, drinkImage, tabIindex) {
 
   return {
+    tabIndex: tabIindex,
     id: drinkId,
     name: drinkName,
     image: '',
@@ -161,6 +172,7 @@ function buildSearchResults() {
   // Let set and prepare the json Object for handlebar.
   var jsonObj = {
     results: [{
+      apply: 'apply',
       categories: [],
       ingredients: []
     }]
@@ -253,8 +265,8 @@ function buildResults(resp) {
 
     var data = resp.drinks;
         data = _.shuffle(data);
-        data = data.slice(0,5)
-    var returnedLength = 5;
+        data = data.slice(0,30)
+    var returnedLength = 30;
     
   }
 
@@ -268,7 +280,7 @@ function buildResults(resp) {
     function sendRequest(dataObj, index) {
       return new Promise((resolve, reject) => {
 
-        var obj = new buildTemplate(dataObj.idDrink, dataObj.strDrink, dataObj.strDrinkThumb);
+        var obj = new buildTemplate(dataObj.idDrink, dataObj.strDrink, dataObj.strDrinkThumb, index);
         jsonObj.results.push(obj);
 
         $.ajax({
@@ -368,7 +380,7 @@ function fetchDataApi(e) {
 
   if ( $(this).hasClass('menu') ) {
     //console.log($(this).children( ".selected").html());
-    type.drink = $(this).children( ".selected").html();
+    type.drink = $(this).children(".selected").html();
     type.api = 'search-results';
     type.page = 'search-results';
   }
@@ -385,6 +397,11 @@ function fetchDataApi(e) {
     case 'random':
         queryUri = apiBaseUri + 'random.php';
       break;
+    case 'search-query':
+        let searchQuery = $(this.previousElementSibling).val();
+        //console.log();
+        queryUri = apiBaseUri + 'search.php?s=' + searchQuery;
+      break;
     // Should it be a shortcut, just save it and return
     case 'shortcut':
         var drinkId = $(this).attr('data-id');
@@ -398,7 +415,7 @@ function fetchDataApi(e) {
       break;
     case 'search': 
           var nextPage = 'search';
-          var jsonObj = { results: [ { name: 'test' } ]};
+          //var jsonObj = { results: [ { name: 'test' } ]};
           
           app().setPage(nextPage);
 

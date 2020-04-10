@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Moody Drinks</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
@@ -95,10 +96,15 @@
         <div id="page-results" class="viewport hide collapse">
           <div class="template-results template">
             {{#each results}}
-            <div class="body-results" style="background-image: url({{this.image}})">
+            <div class="body-results" 
+              style="background-image: url({{this.image}}); --thumb: url('{{this.image}}')" 
+              tabindex="{{this.tabIndex}}" 
+              data-drink-name="{{this.name}}">
+              <div class="body-drink-name" data-drink-name="{{this.name}}"></div>
+              <div class="body-image-display"><div class="body-image-frame"><img src="{{this.image}}"></div></div>
               <div class="body-results-container">
-                <h2>{{this.name}}</h2>
-                <div class="results-info-box">
+                <h2 style="--thumb: url('{{this.image}}')">{{this.name}}</h2>
+                <div class="results-info-box" style="--thumb: url('{{this.image}}')">
                   <h3>Ingredients</h3>
                   {{#each this.ingredients}}
                   <p>
@@ -138,12 +144,12 @@
             <div class="body-search">
               <h2>Search Parameters</h2>
               <h3>Search by cocktail name</h3>
-              <!--
+              
               <div class="ui fluid action input">
                 <input id="search-query" type="text" name="search" placeholder="i.e. Margarita"/>
-                <div class="ui button">Search</div>
+                <button class="ui button" data-type="search-query" data-page="search-results">Search</button>
               </div>
-            -->
+            
               {{#each results}}
               <!--
               <select>
@@ -163,8 +169,8 @@
 
               <div class="ui horizontal divider">or</div>
             -->
-              <select class="ui fluid search dropdown" name="search-category">
-                <option value="0">Seach by Category</option>
+              <select class="ui fluid search dropdown {{this.apply}}" name="search-category">
+                <option value="0">Search by Category</option>
                 {{#each this.categories}}
                 <option value="{{this.value}}">{{this.value}}</option>
                 {{/each}}
