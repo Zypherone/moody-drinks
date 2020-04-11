@@ -209,7 +209,8 @@ footer li:hover button {
   display: block;
   font-size: 2em;
   padding: 1em;
-  text-shadow: 1px 1px 1px #333;
+
+  text-shadow: 1px 1px 1px #1000ff;;
 }
 
 
@@ -245,27 +246,34 @@ footer li:hover button {
 }
 
 #slide-0 .mood-slide {
-    background-image: url(https://www.creads.fr/app/uploads/sites/1/2017/06/julie-richard-tignol.jpg);
+  background-image: url(https://www.creads.fr/app/uploads/sites/1/2017/06/julie-richard-tignol.jpg);
+/*background-image: url(images/mood-0-after-work.jpg);*/
 }
 
 #slide-1 .mood-slide {
-    background-image: url(https://i.ytimg.com/vi/x9mGRTaD_00/maxresdefault.jpg);
+  background-image: url(https://i.ytimg.com/vi/x9mGRTaD_00/maxresdefault.jpg);
+/*background-image: url(images/mood-1-sad-alt.jpg);*/
+  
 }
 
 #slide-2 .mood-slide {
-    background-image: url(https://static.abplive.com/wp-content/uploads/sites/5/2019/12/30152440/booze-party.jpg);
+  background-image: url(https://static.abplive.com/wp-content/uploads/sites/5/2019/12/30152440/booze-party.jpg);
+/*background-image: url(images/mood-2-party.jpg);*/
 }
 
 #slide-3 .mood-slide {
-    background-image: url(https://im.rediff.com/getahead/2015/nov/25smile.jpg);
+  background-image: url(https://im.rediff.com/getahead/2015/nov/25smile.jpg);*/
+/*background-image: url(images/mood-3-easy.jpg);*/
 }
 
 #slide-4 .mood-slide {
-    background-image: url(https://www.incimages.com/uploaded_files/image/970x450/getty_1063202836_412690.jpg);
+  background-image: url(https://www.incimages.com/uploaded_files/image/970x450/getty_1063202836_412690.jpg);
+/*  background-image: url(images/mood-4-safe.jpg);*/
 }
 
 #slide-5 .mood-slide {
-  background-color: #000000;
+  background-image: url(https://image.freepik.com/free-photo/abstract-colored-firework-background-with-free-space-text_34448-343.jpg);
+/*background-image: url(images/mood-5-suprise.jpg);*/
 }
 .slider-nav {
   text-align: center;
@@ -540,14 +548,13 @@ footer {
 
   .mood-text {
     font-size: 2em;
-    font-size: 3vmax;
-    line-height: 4vmax;
-
-    line-height: 5vmin;
+    font-size: 5vmin;
+    line-height: 3vmax;
     display: block;
     word-break: break-word;
     text-align: center;
     font-family: 'Major Mono Display', monospace;
+    font-family: 'Overpass Mono', monospace;
     font-weight: bold;
     max-width: 1%;
 
@@ -559,6 +566,14 @@ footer {
     */
   }
 
+  .mood-text::first-letter {
+    font-family: 'Major Mono Display', monospace;
+    font-weight: normal;
+  }
+
+  .slider-nav {
+    display: none;
+  }
   #page-results,
   #page-search-results,
   #page-list-fav,
@@ -819,12 +834,12 @@ footer {
     content: ' ';
     display: block;
     position: absolute;
-    right: calc(60% - 1em);
-    top: 1em;
+    left: 1em;
+    bottom: 1em;
     height: 2em;
     width: 2em;
-    border-top-right-radius: 1em;
-    box-shadow: 1em -1em 0 0 #ffffff;
+    border-bottom-left-radius: 1em;
+    box-shadow: -1em 1em 0 0 #ffffff;
   }
 }
 /*
