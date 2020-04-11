@@ -17,8 +17,7 @@ var functionAPP,
     appSetPage = '',
     apiBaseUri = "https://www.thecocktaildb.com/api/json/v1/1/";
 
-var dropdownDOM = [];
-
+var dropdownDOM = []; // Store dropdown events
 
 // Prepare the basic page setup
 function app() {
@@ -26,36 +25,43 @@ function app() {
   let activePage = $('.engaged');
 
   functionAPP = {
+    // To hide page
     hidePage: function() {
       $('.ui.active').addClass('dimmer');
+
+      // Chain all the add/removal classes for new page.
       activePage.addClass('hide').removeClass('engaged').delay(700 ).queue(function(next){
+
         // Store template into a var to append for later use
         if (activePage.attr('id') !== 'page-landing') {
-          dropdownDOM.forEach(function(dom) {
-            //dom.destroy();
-            console.log('a,', dom);
-
-            //dom;
-          })
+           // Reset dropdown events
           dropdownDOM = [];
+          // Grab template so we don't loose it.
           var tpl = $(this).children()[0];
+          // Empty page for new page to be displayed/
           $(this).empty();
           $(this).append($(tpl));
         }        
         $(this).addClass("collapse");
         next();
+
       });
     },
+    // To render and show page
     showPage: function(page) {
+      // Chain the removal class followed by add classes to the new page
       $('#page-' + page).removeClass('collapse').delay(1).queue(function(next){
+
         $(this).removeClass('hide').addClass('engaged');
         $('.ui.active').removeClass('dimmer');
+
+        // Display back button when no longer of page landing page.
         if (activePage.attr('id') !== 'page-landing') {
           $('#back-button').removeClass('hide-button');
         }
 
+        // Hide back button when on page landing page.
         if ($(this).attr('id') === 'page-landing') {
-          
           $('#back-button').addClass('hide-button');
         }
         next();
@@ -96,10 +102,11 @@ function saveToDB(userId, listId, drinkId, drinkName, shortcut) {
 
   // Write the new entry data simultaneously.
   var updates = {};
-  updates['/drinks/' + newDrinkKey] = drinkData;  
-  updates['/user/' + userId + '/' + newDrinkKey] = drinkData;
-  updates['/list/' + listId + '/' + userId + '/' + newDrinkKey] = drinkData;
+  updates['/drinks/' + newDrinkKey] = drinkData; // Not in use for current version, kept for backwards compatibility
+  updates['/user/' + userId + '/' + newDrinkKey] = drinkData; // Not in use for current version, kept for backwards compatibility
+  updates['/list/' + listId + '/' + userId + '/' + newDrinkKey] = drinkData; 
 
+  // Lets save to the database.
   firebase.database().ref().update(updates, function(error) {
     if (error) {
       console.log(error);
@@ -275,11 +282,13 @@ function buildResults(resp) {
   // Check to see if there is any valid data, if so, lets build it.
   if ( data.length > 0 ) {
 
+    // Prepare a counter so we can 'snyc' and display once all data has been retrieved.
     var counter = 0;
 
     function sendRequest(dataObj, index) {
       return new Promise((resolve, reject) => {
 
+        // Create a new template
         var obj = new buildTemplate(dataObj.idDrink, dataObj.strDrink, dataObj.strDrinkThumb, index);
         jsonObj.results.push(obj);
 
@@ -290,21 +299,25 @@ function buildResults(resp) {
         .then(function(resp) {
           counter++;
     
+          // Store data from respone, and obtain index key of object so we can display it.
           var r = resp.drinks[0];
           var x  = _.findKey(jsonObj.results, { 'id': r.idDrink });
           
           jsonObj.results[x].image = r.strDrinkThumb;
           jsonObj.results[x].instructions = r.strInstructions;
 
+          // Run through all the 15 possible ingredients and measurements data.
           for (var k=1; k<=15; k++) {
 
             var ingredient = '',
                 measurement = '';
 
+            // Check to see if the ingredient string is empty or not
             if (r["strIngredient" + k] != null) {
               ingredient= r["strIngredient" + k];
             } 
 
+            // Check to see if the measurement string is empty or not
             if (r["strMeasure" + k] != null) {
               measurement = r["strMeasure" + k];
             } 
@@ -313,7 +326,6 @@ function buildResults(resp) {
             if (ingredient != "" || measurement != "") {            
 
               // Push data is the handlebar object
-              
               jsonObj.results[x].ingredients.push({
                 name: ingredient,
                 measurement: measurement
@@ -324,6 +336,7 @@ function buildResults(resp) {
 
         })
         .then(function() {
+          // Once counter and the data length matches we can display page.
           if (counter == data.length) {
             renderPage(nextPage, jsonObj);
             app().showPage(nextPage);
@@ -334,27 +347,14 @@ function buildResults(resp) {
 
     promises = [];
     
+    // Lets run through all promises.
     data.forEach((dataObj, index) => promises.push(sendRequest(dataObj, index)));
 
   }
   else {
-    
-//    console.log('test');
-    
-    //renderPage(nextPage, 'error');
-
-    //renderPage(nextPage, jsonObj);
+    // Display empty results page should there be no data available.
     var tpl = $('.template-empty').html();
-
-    //console.log(nextPage);
-    //console.log('#page-' + nextPage);
-    // show no display result
-    //var template = Handlebars.compile(tpl);
-    //var temp = template({ page_name: 'blah' });
-
-    //console.log(temp);
-    $('#page-' + nextPage).append(tpl);
-    
+    $('#page-' + nextPage).append(tpl);    
     app().showPage(nextPage);
   }
 
@@ -397,12 +397,11 @@ function fetchDataApi(e) {
     case 'random':
         queryUri = apiBaseUri + 'random.php';
       break;
-    case 'search-query':
-        let searchQuery = $(this.previousElementSibling).val();
-        //console.log();
+    case 'search-query': // When search query input has been populated.
+        let searchQuery = $(this.previousElementSibling).val()
         queryUri = apiBaseUri + 'search.php?s=' + searchQuery;
       break;
-    // Should it be a shortcut, just save it and return
+    // This should be a shortcut, just save it and return
     case 'shortcut':
         var drinkId = $(this).attr('data-id');
         var drinkName = $(this).attr('data-name');
@@ -413,17 +412,13 @@ function fetchDataApi(e) {
         saveToDB(1, listId, drinkId, drinkName, $(this));
         return;
       break;
-    case 'search': 
+    case 'search':  // Lets display the search page param.
           var nextPage = 'search';
-          //var jsonObj = { results: [ { name: 'test' } ]};
-          
           app().setPage(nextPage);
-
-          buildSearchResults();
-
+          buildSearchResults(); // Pull and build search param page.
         return;
       break;
-    default:
+    default: // All else is likely a firebase request.
         if (type.page == 'list-fav' || type.page == 'list-try' )
         queryUri = 'firebase';
       break;
@@ -438,9 +433,7 @@ function fetchDataApi(e) {
 
   function fetchDataUri(uri, nextPage) {
 
-    //console.log(uri, nextPage, 'aa');
-
-    userId = 1;
+    userId = 1; // Firebase user set to ID 1 as there is not auth available.
     var data;
 
     app().setPage(nextPage);
@@ -467,7 +460,6 @@ function fetchDataApi(e) {
 
   }
 
-
   fetchDataUri(queryUri, type.page);
 }
 
@@ -477,5 +469,7 @@ $('#back-button').on('click', function() {
   app().hidePage();
   app().showPage('landing');
 });
+// Turn all buttons with [data-page] attr in page request.
 $(document).on('click', 'button[data-page]', fetchDataApi);
+// Set events for the mood sliders.
 $(document).on('click', '.slide', fetchDataApi);

@@ -42,7 +42,7 @@ header {
 }
 
 header {
-  display: none;
+  display: block;
 }
 
 h1 {
@@ -135,7 +135,7 @@ footer li:hover button {
   display: block;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 650px) {
 
   .body-results h2:before {
     content: ' ';
@@ -214,7 +214,7 @@ footer li:hover button {
 }
 
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 650px) {
 
   .slide:hover .mood-slide {
     box-shadow: 0 0 10px #000;
@@ -280,7 +280,7 @@ footer li:hover button {
   margin: 10px 0 0 0;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 650px) {
 
   section {
     position: relative;
@@ -292,7 +292,7 @@ footer li:hover button {
   }
 
   .mood-slider,
-  .cocktail-slider {
+  .cock tail-slider {
 
     height: 100%;
     width: 100%;
@@ -301,7 +301,7 @@ footer li:hover button {
   .slider {
     height: 100%;
     width: 100%;
-    border-radius: 1em;
+    border-radius: 1em 0 0 1em; 
     overflow: hidden;
     /*overflow-y: scroll;*/
   }
@@ -337,7 +337,7 @@ footer li:hover button {
   .slider-nav a:hover {
     color: #333;
     font-family: "Times", "Times New Roman", "serif", "sans-serif", "EmojiSymbols";
-    padding: 0.5em;
+    padding: 0.3em;
     font-size: 1.3em;
     display: inline-block;
     text-decoration: none;
@@ -519,7 +519,7 @@ footer {
 
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 650px) {
 
   header {
     min-height: 100px;
@@ -550,6 +550,8 @@ footer {
     font-size: 2em;
     font-size: 5vmin;
     line-height: 3vmax;
+    font-size: 1.9em;
+    line-height: 1.05em;
     display: block;
     word-break: break-word;
     text-align: center;
@@ -662,6 +664,13 @@ footer {
     align-items: stretch;
   }
 
+  .body-results:only-of-type {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    border-radius: 1em;
+  }
+
   .body-results:after {
     content: '';
     display: table;
@@ -714,6 +723,10 @@ footer {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+.body-results:only-of-type .body-drink-name:before {
+  font-size: 2.5em;
 }
 
   .body-results-container {
@@ -859,7 +872,7 @@ footer {
 }
 
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 650px) {
   .body-search {
     width: 100%;
   }
