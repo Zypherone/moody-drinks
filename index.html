@@ -84,12 +84,12 @@
             <a href="#slide-3">🙂</a> 
             <a href="#slide-4">❤</a>
             -->
-            <a href="#slide-0"><span class="nav-icon">&#127867;</span></a>
+            <a href="#slide-0"><span class="nav-icon">&#128524;</span></a>
             <a href="#slide-1"><span class="nav-icon">&#128531;</span></a> 
-            <a href="#slide-2"><span class="nav-icon">&#127881;</span></a> 
-            <a href="#slide-3"><span class="nav-icon">&#128522;</span></a> 
-            <a href="#slide-4"><span class="nav-icon">&#128519;</span></a>
-            <a href="#slide-5"><span class="nav-icon">&#128163;</span></a>
+            <a href="#slide-2"><span class="nav-icon">&#128518;</span></a> 
+            <a href="#slide-3"><span class="nav-icon">&#128521;</span></a> 
+            <a href="#slide-4"><span class="nav-icon">&#128566;</span></a>
+            <a href="#slide-5"><span class="nav-icon">&#128558;</span></a>
           </nav>
         </div>
         <div id="page-results" class="viewport hide collapse">
@@ -148,20 +148,8 @@
                 <input id="search-query" type="text" name="search" placeholder="i.e. Margarita"/>
                 <button class="ui button" data-type="search-query" data-page="search-results">Search</button>
               </div>
-            
               {{#each results}}
               <div class="ui horizontal divider">or</div>
-              <!--
-
-              <select class="ui fluid search dropdown" name="search-ingredient">
-                <option value="">Seach by Ingredient</option>
-                {{#each this.ingredients}}
-                <option>{{this.value}}</option>
-                {{/each}}
-              </select>
-
-              <div class="ui horizontal divider">or</div>
-            -->
               <select class="ui fluid search dropdown {{this.apply}}" name="search-category">
                 <option value="0">Search by Category</option>
                 {{#each this.categories}}
