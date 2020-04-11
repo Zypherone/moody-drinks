@@ -158,12 +158,14 @@ footer li:hover button {
     z-index: 3;
     bottom: -2em;
     box-shadow: 2px 2px 3px rgba(51, 51, 51, .5);
+    box-shadow: 1px 1px 0px #333, -1px -1px 0px #333, 1px -1px 0px #333, -1px 1px 0px #333;;
     float: right;
 
     box-shadow: 0 2px 1px rgba(51, 51, 51, .5);
     float: right;
     /* border: 1px solid #ececec; */
     border-radius: .5em 0 0 .5em;
+    border-radius: .5em;
 }
 
 }
@@ -429,6 +431,7 @@ footer {
     margin-right: -50px;
     margin-right: -1em;
     margin-right: -0.5em;
+    margin-right: 0;
   }
 
 
