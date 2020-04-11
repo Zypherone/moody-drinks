@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Moody Drinks</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src="assets/jquery-3.4.1.min.js"></script>
+    <script src="assets/handlebars.min-v4.7.3.js"></script>
+    <script src="assets/dropdown.min.js"></script>
+    <script src="assets/transition.min.js"></script>
+    <link rel="stylesheet" href="assets/css-reset.css" />    
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="assets/button.min.css" />
+    <link rel="stylesheet" href="assets/icon.min.css" />
+    <link rel="stylesheet" href="assets/loader.min.css" />
+    <link rel="stylesheet" href="assets/input.min.css" />
+    <link rel="stylesheet" href="assets/dropdown.min.css" />
+    <link rel="stylesheet" href="assets/transition.min.css" />
+    <link rel="stylesheet" href="assets/divider.min.css" />
+    
+  </head>
+  <body>
+    <div id="outer-container">
+      <div id="inner-container">
+      <header>
+
+        <h1>Welcome back Janice!</h1>
+        <p>How do you feel today? Ready to get a Moody Drink?</p>
+
+      </header>
+      <section>
+        <div class="ui segment">
+          <div class="ui active inverted">
+            <div class="ui medium text loader">Loading</div>
+          </div>
+        </div>
+        <div id="page-landing" class="viewport engaged">
+          <div class="slider" id="slider">
+            <div class="holder">
+              <div class="slide" id="slide-0" data-type="drink" data-drink="vodka" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">After&nbsp;Work~</span>
+                </div>
+              </div>
+              <div class="slide" id="slide-1" data-type="drink" data-drink="gin" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Kinda&nbsp;Blue..</span>
+                </div>
+              </div>
+              <div class="slide" id="slide-2" data-type="drink" data-drink="tequila" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Party&nbsp;Time!!!</span>
+                </div>
+              </div>
+              <div class="slide" id="slide-3" data-type="drink" data-drink="rum" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Easy&nbsp;option</span>
+                </div>
+              </div>
+              <div class="slide" id="slide-4" data-type="mocktails" data-drink="Non_Alcoholic" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Feeling&nbsp;safe</span>
+                </div>
+              </div>
+              <div class="slide" id="slide-5" data-type="random" data-drink="random" data-page="results">
+                <div class="mood-slide">
+                  <span class="mood-text">Surprise&nbsp;me!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <nav class="slider-nav">
+            <!--
+            <a href="#slide-0">😀</a>
+            <a href="#slide-1">😔</a> 
+            <a href="#slide-2">😆</a> 
+            <a href="#slide-3">🙂</a> 
+            <a href="#slide-4">❤</a>
+            -->
+            <a href="#slide-0"><span class="nav-icon">&#127867;</span></a>
+            <a href="#slide-1"><span class="nav-icon">&#128531;</span></a> 
+            <a href="#slide-2"><span class="nav-icon">&#127881;</span></a> 
+            <a href="#slide-3"><span class="nav-icon">&#128522;</span></a> 
+            <a href="#slide-4"><span class="nav-icon">&#128519;</span></a>
+            <a href="#slide-5"><span class="nav-icon">&#128163;</span></a>
+          </nav>
+        </div>
+        <div id="page-results" class="viewport hide collapse">
+          <span class="template-results template">
+            {{#each results}}
+            <div class="body-results" 
+              style="background-image: url({{this.image}}); --thumb: url('{{this.image}}')" 
+              tabindex="{{this.tabIndex}}" 
+              data-drink-name="{{this.name}}">
+              <div class="body-drink-name" data-drink-name="{{this.name}}"></div>
+              <div class="body-image-display"><div class="body-image-frame"><img src="{{this.image}}"></div></div>
+              <div class="body-results-container">
+                <h2 style="--thumb: url('{{this.image}}')">{{this.name}}</h2>
+                <div class="results-info-box" style="--thumb: url('{{this.image}}')">
+                  <h3>Ingredients</h3>
+                  {{#each this.ingredients}}
+                  <p>
+                    <span class="results-measurement">{{this.measurement}}</span> 
+                    <span class="results-name">{{this.name}}</span>
+                  </p>
+                  {{/each}}
+                  <h3>Instructions/Steps</h3>
+                  <p>{{this.instructions}}</p>
+                  <div class="results-shortcut">
+                      <div class="ui mini two buttons">
+                      <button class="ui teal button"
+                        data-type="shortcut" 
+                        data-page="list-try" 
+                        data-id="{{this.id}}" 
+                        data-name="{{this.name}}"
+                      ><i class="calendar plus outline icon"></i> Try Later
+                    </button>
+                    <div class="or"></div>
+                      <button class="ui pink button" 
+                        data-type="shortcut" 
+                        data-page="list-fav" 
+                        data-id="{{this.id}}" 
+                        data-name="{{this.name}}"
+                        ><i class="heart icon"></i> Favourite
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </span>
+        </div>
+        <div id="page-search" class="viewport hide collapse">
+          <div class="template-search template">
+            <div class="body-search">
+              <h2>Search Parameters</h2>
+              <h3>Search by cocktail name</h3>
+              
+              <div class="ui fluid action input">
+                <input id="search-query" type="text" name="search" placeholder="i.e. Margarita"/>
+                <button class="ui button" data-type="search-query" data-page="search-results">Search</button>
+              </div>
+            
+              {{#each results}}
+              <div class="ui horizontal divider">or</div>
+              <!--
+
+              <select class="ui fluid search dropdown" name="search-ingredient">
+                <option value="">Seach by Ingredient</option>
+                {{#each this.ingredients}}
+                <option>{{this.value}}</option>
+                {{/each}}
+              </select>
+
+              <div class="ui horizontal divider">or</div>
+            -->
+              <select class="ui fluid search dropdown {{this.apply}}" name="search-category">
+                <option value="0">Search by Category</option>
+                {{#each this.categories}}
+                <option value="{{this.value}}">{{this.value}}</option>
+                {{/each}}
+              </select>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        <div id="page-search-results" class="viewport hide collapse">
+          <div class="template-search-results template">
+            <!-- Uses template-results structure -->
+          </div>
+        </div>
+        <div id="page-list-fav" class="viewport hide collapse">
+          <div class="template-list-fav template">
+            <!-- Uses template-results structure -->
+          </div>
+        </div>
+        <div id="page-list-try" class="viewport hide collapse">
+          <div class="template-list-try template">
+            <!-- Uses template-results structure -->
+          </div>
+        </div>
+        <div id="page-empty" class="viewport hide collapse">
+          <div class="template-empty template">
+            <div class="body-search">
+              <h2>Oops! Sorry...</h2>
+              <h3>There are no results available for your request, please try again.</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <nav>
+          <ul>
+            <li id="back-button" class="hide-button">
+              <button>
+                <span class="nav-icon"><i class="chevron left icon"></i></span>
+                <span class="nav-text">Back</span>
+              </button>
+            </li>
+            <li>
+              <button data-page="search" data-type="search">
+                <span class="nav-icon"><i class="search icon"></i></span>
+                <span class="nav-text">Search</span>
+              </button>
+            </li>
+            <li><button data-page="list-try"><span class="nav-icon">&#127864;</span><span class="nav-text">Try It</span></button></li>
+            <li><button data-page="list-fav"><span class="nav-icon">&#10084;</span><span class="nav-text">Favourites</span></button></li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
