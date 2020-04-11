@@ -3,6 +3,10 @@
   src:url(EmojiSymbols-Regular-37883244862ada81e50a5c43f090ab5b696a4d27c5e66d321546a1638bb1e682.woff) format("woff");
 }
 
+:focus {
+  outline: none;
+}
+
 *,
 body,
 html {
