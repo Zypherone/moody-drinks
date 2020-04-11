@@ -64,6 +64,11 @@ function app() {
         if ($(this).attr('id') === 'page-landing') {
           $('#back-button').addClass('hide-button');
         }
+
+        // If results are showing, focus on element so we can display recipe.
+        if ($('.engaged > .body-results').length) {
+          $('.engaged > .body-results')[0].focus();
+        }
         next();
       });   
     },
@@ -203,14 +208,12 @@ function buildSearchResults() {
         counter++;
   
         var r = resp.drinks;
-
-        console.log(r);
         
         r.forEach(function(valueData) {
           jsonObj.results[0].categories.push({ value: valueData.strCategory });
         });
 
-      })/*
+      })/* Ingredients api temp hashed out due to long response.
       $.ajax({
         url: apiBaseUri + 'list.php?i=list',
         method: "GET"
@@ -270,14 +273,11 @@ function buildResults(resp) {
   }
   else { 
 
+    var returnedLength = 15;
     var data = resp.drinks;
         data = _.shuffle(data);
-        data = data.slice(0,30)
-    var returnedLength = 30;
-    
+        data = data.slice(0,returnedLength)   
   }
-
-  console.log(data);
 
   // Check to see if there is any valid data, if so, lets build it.
   if ( data.length > 0 ) {
