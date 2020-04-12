@@ -251,36 +251,12 @@ footer li:hover button {
   font-weight: 100;
 }
 
-#slide-0 .mood-slide {
-  background-image: url(https://www.creads.fr/app/uploads/sites/1/2017/06/julie-richard-tignol.jpg);
-/*background-image: url(images/mood-0-after-work.jpg);*/
-}
-
-#slide-1 .mood-slide {
-  background-image: url(https://i.ytimg.com/vi/x9mGRTaD_00/maxresdefault.jpg);
-/*background-image: url(images/mood-1-sad-alt.jpg);*/
-  
-}
-
-#slide-2 .mood-slide {
-  background-image: url(https://static.abplive.com/wp-content/uploads/sites/5/2019/12/30152440/booze-party.jpg);
-/*background-image: url(images/mood-2-party.jpg);*/
-}
-
-#slide-3 .mood-slide {
-  background-image: url(https://im.rediff.com/getahead/2015/nov/25smile.jpg);*/
-/*background-image: url(images/mood-3-easy.jpg);*/
-}
-
-#slide-4 .mood-slide {
-  background-image: url(https://www.incimages.com/uploaded_files/image/970x450/getty_1063202836_412690.jpg);
-/*  background-image: url(images/mood-4-safe.jpg);*/
-}
-
-#slide-5 .mood-slide {
-  background-image: url(https://image.freepik.com/free-photo/abstract-colored-firework-background-with-free-space-text_34448-343.jpg);
-/*background-image: url(images/mood-5-suprise.jpg);*/
-}
+#slide-0 .mood-slide { background-image: url(images/mood-0.jpg); }
+#slide-1 .mood-slide { background-image: url(images/mood-1.jpg); }
+#slide-2 .mood-slide { background-image: url(images/mood-2.jpg); }
+#slide-3 .mood-slide { background-image: url(images/mood-3.jpg); }
+#slide-4 .mood-slide { background-image: url(images/mood-4.jpg); }
+#slide-5 .mood-slide { background-image: url(images/mood-5.jpg); }
 .slider-nav {
   text-align: center;
   margin: 10px 0 0 0;

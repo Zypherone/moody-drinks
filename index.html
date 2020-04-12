@@ -15,15 +15,7 @@
     <script src="assets/handlebars.min-v4.7.3.js"></script>
     <script src="assets/dropdown.min.js"></script>
     <script src="assets/transition.min.js"></script>
-    <link rel="stylesheet" href="assets/css-reset.css" />    
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="assets/button.min.css" />
-    <link rel="stylesheet" href="assets/icon.min.css" />
-    <link rel="stylesheet" href="assets/loader.min.css" />
-    <link rel="stylesheet" href="assets/input.min.css" />
-    <link rel="stylesheet" href="assets/dropdown.min.css" />
-    <link rel="stylesheet" href="assets/transition.min.css" />
-    <link rel="stylesheet" href="assets/divider.min.css" />
+    <link rel="stylesheet" href="styles.css" />
     
   </head>
   <body>
@@ -44,32 +36,56 @@
         <div id="page-landing" class="viewport engaged">
           <div class="slider" id="slider">
             <div class="holder">
-              <div class="slide" id="slide-0" data-type="drink" data-drink="vodka" data-page="results">
+              <div class="slide" id="slide-0" 
+                  data-type="drink" 
+                  data-drink="vodka" 
+                  data-page="results"
+                  style="--mood-image: url(images/mood-0.jpg)">
                 <div class="mood-slide">
                   <span class="mood-text">After&nbsp;Work~</span>
                 </div>
               </div>
-              <div class="slide" id="slide-1" data-type="drink" data-drink="gin" data-page="results">
+              <div class="slide" id="slide-1" 
+                  data-type="drink" 
+                  data-drink="gin" 
+                  data-page="results"
+                  style="--mood-image: url(images/mood-1.jpg)">
                 <div class="mood-slide">
                   <span class="mood-text">Kinda&nbsp;Blue..</span>
                 </div>
               </div>
-              <div class="slide" id="slide-2" data-type="drink" data-drink="tequila" data-page="results">
+              <div class="slide" id="slide-2" 
+                  data-type="drink" 
+                  data-drink="tequila" 
+                  data-page="results"
+                  style="--mood-image: url(images/mood-2.jpg)">
                 <div class="mood-slide">
                   <span class="mood-text">Party&nbsp;Time!!!</span>
                 </div>
               </div>
-              <div class="slide" id="slide-3" data-type="drink" data-drink="rum" data-page="results">
+              <div class="slide" id="slide-3" 
+                  data-type="drink" 
+                  data-drink="rum" 
+                  data-page="results"
+                  style="--mood-image: url(images/mood-3.jpg)">
                 <div class="mood-slide">
                   <span class="mood-text">Easy&nbsp;option</span>
                 </div>
               </div>
-              <div class="slide" id="slide-4" data-type="mocktails" data-drink="Non_Alcoholic" data-page="results">
+              <div class="slide" id="slide-4" 
+                  data-type="mocktails" 
+                  data-drink="Non_Alcoholic" 
+                  data-page="results"
+                  style="--mood-image: url(images/mood-4.jpg)">
                 <div class="mood-slide">
                   <span class="mood-text">Feeling&nbsp;safe</span>
                 </div>
               </div>
-              <div class="slide" id="slide-5" data-type="random" data-drink="random" data-page="results">
+              <div class="slide" id="slide-5" 
+                  data-type="random" 
+                  data-drink="random"
+                  data-page="results"
+                  style="--mood-image: url(images/mood-5.jpg)">
                 <div class="mood-slide">
                   <span class="mood-text">Surprise&nbsp;me!</span>
                 </div>
@@ -77,13 +93,6 @@
             </div>
           </div>
           <nav class="slider-nav">
-            <!--
-            <a href="#slide-0">😀</a>
-            <a href="#slide-1">😔</a> 
-            <a href="#slide-2">😆</a> 
-            <a href="#slide-3">🙂</a> 
-            <a href="#slide-4">❤</a>
-            -->
             <a href="#slide-0"><span class="nav-icon">&#128524;</span></a>
             <a href="#slide-1"><span class="nav-icon">&#128531;</span></a> 
             <a href="#slide-2"><span class="nav-icon">&#128518;</span></a> 
