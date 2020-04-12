@@ -93,32 +93,74 @@ function app() {
  * @param {*} drinkName 
  * @param {*} shortcut 
  */
-function saveToDB(userId, listId, drinkId, drinkName, shortcut) {
+function saveToDB(userId, listId, idDrink, drinkName, shortcut) {
 
-  // A prepare the drink entry.
-  var drinkData = {
-    list: listId,
-    idDrink: drinkId,
-    strDrink: drinkName
-  };
+  $(shortcut).addClass('loading');
 
-  // Get a key for a new Post.
-  var newDrinkKey = firebase.database().ref().child('drinks').push().key;
+  const dbCheck = checkDbIfExists(idDrink);
+  let updates = {};
+  let oldButton = '';
+
+
+  if ($(shortcut).hasClass('basic')) {
+    
+    console.log('Active to remove from ' + dbCheck.data.list);
+    var newDrinkKey    = dbCheck.id;
+    var drinkData      = null;
+    
+    $(shortcut).parents('.body-results').remove();
+
+  }
+  else {
+
+    if (dbCheck !== false) {
+      //console.log(listId, dbCheck);
+
+      console.log('Active to move ' + dbCheck.data.list + ' => ' + listId);
+
+      var newDrinkKey    = dbCheck.id;
+      var drinkData      = dbCheck.data;
+      
+      oldButton = $(shortcut).siblings('.button');
+      oldButton.toggleClass('basic');
+      
+      updates['/list/' + dbCheck.data.list + '/' + userId + '/' + newDrinkKey] = null; 
+      drinkData.list = listId;
+
+    }
+    else {
+
+      console.log('Not active at all, add to: ' + listId);
+      // A prepare the drink entry.
+      var drinkData = {
+        userId: userId,
+        list: listId,
+        idDrink: idDrink,
+        strDrink: drinkName
+      };
+
+      // Get a key for a new Post.
+      var newDrinkKey = firebase.database().ref().child('drinks').push().key;
+    }
+  }
 
   // Write the new entry data simultaneously.
-  var updates = {};
+  
   updates['/drinks/' + newDrinkKey] = drinkData; // Not in use for current version, kept for backwards compatibility
   updates['/user/' + userId + '/' + newDrinkKey] = drinkData; // Not in use for current version, kept for backwards compatibility
   updates['/list/' + listId + '/' + userId + '/' + newDrinkKey] = drinkData; 
 
+  //console.log(updates);
+  
   // Lets save to the database.
   firebase.database().ref().update(updates, function(error) {
     if (error) {
       console.log(error);
     } else {
-      $(shortcut).addClass('saved');
+      $(shortcut).removeClass('loading').toggleClass('basic');
     }
   });
+  
 }
 
 
@@ -166,7 +208,9 @@ function buildTemplate(drinkId, drinkName, drinkImage, tabIindex) {
     name: drinkName,
     image: '',
     ingredients: [],
-    instructions: ''
+    instructions: '',
+    tryIt: '',
+    fav: ''
   }
 }
 
@@ -232,7 +276,6 @@ function buildSearchResults() {
       })*/
       .then(function() {
         if (counter == data.length) {
-          console.log(jsonObj);
           renderPage(nextPage, jsonObj);
           app().showPage(nextPage);
         }
@@ -267,8 +310,13 @@ function buildResults(resp) {
   if (typeof resp.val === 'function') {
        
     var data = resp.val();
-        data = Object.values(data);
-    var returnedLength = data.length;
+
+    if (data !== null) {
+      data = Object.values(data);
+      var returnedLength = data.length;
+    } else {
+      data = [];
+    }
 
   }
   else { 
@@ -302,6 +350,13 @@ function buildResults(resp) {
           // Store data from respone, and obtain index key of object so we can display it.
           var r = resp.drinks[0];
           var x  = _.findKey(jsonObj.results, { 'id': r.idDrink });
+          
+          const saved = checkDbIfExists(r.idDrink);
+          if (saved !== false) {
+            //console.log(saved);
+            jsonObj.results[x].tryIt = saved.data.list == 'list-try' ? ' basic ' : '';
+            jsonObj.results[x].fav = saved.data.list == 'list-fav' ? ' basic ' : '';
+          }
           
           jsonObj.results[x].image = r.strDrinkThumb;
           jsonObj.results[x].instructions = r.strInstructions;
@@ -359,6 +414,54 @@ function buildResults(resp) {
   }
 
 }
+
+/**
+ * Retrieve and check db info for removal too.
+ * @param {*} e 
+ */
+
+var dbLists = [];
+
+firebase.database()
+.ref('/user/1')
+.on('value', resp => {
+  dbLists = resp.val();
+})
+
+ 
+function checkDbIfExists(idDrink) {
+
+  const data = dbLists;
+  const keyExists = _.findKey(data, { 'idDrink': idDrink });
+  
+  //console.log(keyExists);
+
+  if (typeof keyExists === 'string') {
+    return { id: keyExists, data: data[keyExists] };
+  } else {
+    return false;
+  }
+
+  //console.log(idDrink);
+/*
+  firebase.database()
+    .ref('/user/' + userId)
+    .once('value')
+    .then(function(resp) {
+      //console.log(resp.val());
+      const data = resp.val();
+      const keyExists = _.findKey(data, { 'idDrink': idDrink });
+
+      console.log(data);
+      if (typeof keyExists === 'string') {
+        return data;
+      } else {
+        return false;
+      }
+    });
+*/
+}
+
 
 /**
  *  Lets build the api callbacks
