@@ -1,6 +1,6 @@
 @font-face{
   font-family:"EmojiSymbols";
-  src:url(EmojiSymbols-Regular-37883244862ada81e50a5c43f090ab5b696a4d27c5e66d321546a1638bb1e682.woff) format("woff");
+  src:url(assets/fonts/EmojiSymbols-Regular-37883244862ada81e50a5c43f090ab5b696a4d27c5e66d321546a1638bb1e682.woff) format("woff");
 }
 
 :focus {
@@ -910,13 +910,27 @@ footer {
   box-shadow: 1px 1px 0px #a4a4a4, -1px -1px 0px #a4a4a4, 1px -1px 0px #a4a4a4, -1px 1px 0px #a4a4a4 !important;
 }
 
-.viewport.engaged span:only-child {
+#page-list-try .viewport.engaged span:only-child,
+#page-list-fav .viewport.engaged span:only-child {
   display: block;
 }
-.viewport.engaged span:only-child:before {
+#page-list-try .viewport.engaged span:only-child:before,
+#page-fav-try .viewport.engaged span:only-child:before {
 
 }
-.viewport.engaged span:only-child:after {
-
+#page-list-try .viewport.engaged span:only-child:after,
+#page-list-fav .viewport.engaged span:only-child:after {
   content: "You have no drinks saved!";
+}
+
+.results-shortcut .icon:first-child {
+  display: none;
+}
+
+.results-shortcut .basic .icon {
+  display: inline-block !important;
+}
+
+.results-shortcut .basic .icon:nth-child(2) {
+  display: none !important;
 }

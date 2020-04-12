@@ -108,8 +108,9 @@ function saveToDB(userId, listId, idDrink, drinkName, shortcut) {
     var newDrinkKey    = dbCheck.id;
     var drinkData      = null;
     
-    $(shortcut).parents('.body-results').remove();
-
+    if ($(shortcut).parents('.viewport').attr('id') !== 'page-results') {
+      $(shortcut).parents('.body-results').remove();
+    }
   }
   else {
 
