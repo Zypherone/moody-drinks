@@ -115,7 +115,7 @@
                   <p>{{this.instructions}}</p>
                   <div class="results-shortcut">
                       <div class="ui mini two buttons">
-                      <button class="ui teal button"
+                      <button class="ui teal button {{this.tryIt}}"
                         data-type="shortcut" 
                         data-page="list-try" 
                         data-id="{{this.id}}" 
@@ -123,7 +123,7 @@
                       ><i class="calendar plus outline icon"></i> Try Later
                     </button>
                     <div class="or"></div>
-                      <button class="ui pink button" 
+                      <button class="ui pink button {{this.fav}}" 
                         data-type="shortcut" 
                         data-page="list-fav" 
                         data-id="{{this.id}}" 
@@ -161,19 +161,19 @@
           </div>
         </div>
         <div id="page-search-results" class="viewport hide collapse">
-          <div class="template-search-results template">
+          <span class="template-search-results template">
             <!-- Uses template-results structure -->
-          </div>
+          </span>
         </div>
         <div id="page-list-fav" class="viewport hide collapse">
-          <div class="template-list-fav template">
+          <span class="template-list-fav template">
             <!-- Uses template-results structure -->
-          </div>
+          </span>
         </div>
         <div id="page-list-try" class="viewport hide collapse">
-          <div class="template-list-try template">
+          <span class="template-list-try template">
             <!-- Uses template-results structure -->
-          </div>
+          </span>
         </div>
         <div id="page-empty" class="viewport hide collapse">
           <div class="template-empty template">
