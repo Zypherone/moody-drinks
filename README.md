@@ -1,4 +1,4 @@
-# Moody Drinks
+# Moody Drinks 2
 
 Moody Drinks is an app to recommend drinks depending on the user's current mood. 
 
