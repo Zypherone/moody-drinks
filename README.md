@@ -1,32 +1,76 @@
-# Moody Drinks
+[contributors-shield]: https://img.shields.io/github/contributors/Zypherone/moody-drinks-2.0.svg?style=flat-square
+[contributors-url]: https://github.com/Zypherone/moody-drinks-2.0/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Zypherone/moody-drinks-2.0.svg?style=flat-square
+[forks-url]: https://github.com/Zypherone/moody-drinks-2.0/network/members
+[stars-shield]: https://img.shields.io/github/stars/Zypherone/moody-drinks-2.0.svg?style=flat-square
+[stars-url]: https://github.com/Zypherone/moody-drinks-2.0/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Zypherone/moody-drinks-2.0.svg?style=flat-square
+[issues-url]: https://github.com/Zypherone/moody-drinks-2.0/issues
+[build-style-shield]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat
+[build-style-url]: https://github.com/feross/standard
+[license-shield]: https://img.shields.io/github/license/Zypherone/moody-drinks-2.0.svg?style=flat-square
+[license-url]: http://choosealicense.com/licenses/mit/
 
-Moody Drinks is an app to recommend drinks depending on the user's current mood. 
+[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![JS Standard][build-style-shield]][build-style-url] [![MIT License][license-shield]][license-url]
 
-## Highlights
+# Moody Drinks v2
+Moody Drinks is an app to recommend drinks depending on the user's current mood. Build using Firebase, React, Express and Node.Js.
 
-- The drinks are recommended with pictures, drinking instructions, and ingredients. They are in random order but retrieved according to the mood category chosen by users.
-- Users can search a particular drink by name, by ingredient (currently unavailable) or by category.
-- For every drink, users can save it to a Favourites category or a Try It Later category, and the data persists.
-  - NB -[BUG] Removing a drink from the categories is currently unavailable in this version.
-- The app is responsively designed to work across multiple devices.
-- The interface is interactive and user friendly. 
+#### Table of Contents
+- [Screenshots](#Screenshots)
+- [Demo](#Demo)
+- [Built With](#Built_With)
+- [Code Style](#Code_Style)
+- [Installation and Usage](#Installation_and_Usage)
+- [Futute development](#Futute_development)
+- [Contributing](#Contributing)
+- [License](#License)
 
-### Web Link:
+---
 
-To view our demo, visit the link below:
-https://zypherone.github.io/moody-drinks/
+## Screenshots
+|Screenshot One|Screenshot Two|Screenshot Three|
+|----|----|----|
+|<img src="screenshots/screenshot1.jpg">|<img src="screenshots/screenshot2.jpg">|<img src="screenshots/screenshot3.jpg">|
 
-### Slides Link:
+## Demo
 
-https://drive.google.com/file/d/1LxyQzv8Qxk-nWRzTNMvCCs_SRvGdIbCu/view?usp=sharing
+Click http://moody-drinks.danutuckersaunders.name/ to visit a live demo.
 
+## Built with
+- [Firebase](http://firebase.google.com/)
+- [React.js](https://reactjs.org/)
+- [React Material UI](https://material-ui.com/)
+- [Node.js](https://nodejs.org/en/)
+- [Lodash](https://lodash.com/)
 
-## Screenshots of examples
+## Code style
+[![JS Standard][build-style-shield]][build-style-url] - https://github.com/standard/standard
 
-![Screenshot](screenshots/mobile-landing.jpg "Screenshot")
-![Screenshot](screenshots/mobile-results.jpg "Screenshot")
-![Screenshot](screenshots/desktop-landing.jpg "Screenshot")
-![Screenshot](screenshots/desktop-mood.jpg "Screenshot")
-![Screenshot](screenshots/desktop-search.jpg "Screenshot")
+---
 
+## Installation and Usage
 
+Download (and unpack) or clone the repo. In the project directory, you can run:
+
+`npm install` followed by `npm start` then wait till your app loads in a browser.
+
+## Futute development
+- Search feature (use thecocktaildb.com search API)
+- Previous searchs (recent tab) take use of firebase
+- Update use details - update through firebase
+- Firebase related updates
+  - Add recipes 
+  - Update/remove reipes
+  - Add comments
+  - Add video
+  - Suggest new categories
+
+## Acknowledgement
+I would like to first and more most thank thecocktaildb.com for the free version of their API to access their coctail/mocktail recipes.
+Followed by the amazing staff at Triology bootcamp program; Rachel, Rita, Agustine, Sandesh, Dyon, Vishal, and Aditya/
+
+## License
+| Details | Author |
+|---|---|
+|This project is licensed under the MIT License - see [choosealicense.com](http://choosealicense.com/licenses/mit/) for more details.<br />A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.<br /><br />[![License](https://img.shields.io/badge/License-MIT-blue.svg)](http://choosealicense.com/licenses/mit/) [![ZypherZypherone](https://img.shields.io/badge/2020_%C2%A9-zypherone-blue)](zypherone@github.com)| <img src="https://avatars1.githubusercontent.com/u/360494?v=" width="250"> |
